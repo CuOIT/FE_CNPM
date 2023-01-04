@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .center {
+            text-align: center;
+
+        }
+
+        #quan {
+            display: none;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+        <h1 id="quan"> Tôi là Lê Đức Quân</h1>
+        <h1 id="duy">Tôi là Mai Vũ Duy</h1>
+        <button class="text-center" onclick="doigiatri()">Click me</button>
+    </div>
+
+    <script>
+        function doigiatri() {
+            var x = document.getElementById("quan");
+            var y = document.getElementById("duy");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                y.style.display = "none"
+            } else {
+                x.style.display = "none";
+                y.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
