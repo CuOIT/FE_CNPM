@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let num = 0;
+        function iku() {
+            if (num == 0) {
+                document.getElementById('text').innerHTML = "PHAM XUAN BACH";
+                document.getElementById('text').style.color = 'red';
+                document.getElementById('text').style.fontSize = '100px';
+            }
+            if(num == 1) {
+                document.getElementById('text').innerHTML = "Hello World";
+                document.getElementById('text').style.color = 'black';
+                document.getElementById('text').style.fontSize = '100px';
+            }
+            num++;
+            if(num == 2) num = 0;
+        }
+    </script>
+    <!-- <style>
+        .rainbow {
+            background-size: 30cm;
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 50px;
+        }
+    </style> -->
+</head>
+
+<body>
+    <h1 style="text-align: center; font-size: 100px; color: black;" id="text" class="rainbow">Hello World</h1>
+    <button style="margin:auto; display:block; width: 200px; 
+            height: 100px; background-color: red; color: white; border-color: blue; border-width: 10px;
+            font-size: 20px;" onclick="iku(); yamete()">Press me please daddy</button>
+    
+</body>
+
+</html>
