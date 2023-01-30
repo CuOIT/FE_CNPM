@@ -1,0 +1,26 @@
+.header{
+    background-color: #f6f6f6;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 30px;
+    box-sizing: border-box;
+
+    .header-icon{
+        width: 10%;
+
+        img{
+            width: 150px;
+            height: auto;
+        }
+    }
+
+    .header-user-cart{
+        width: 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

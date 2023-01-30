@@ -1,0 +1,40 @@
+.navbar{
+    width: 25%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    text-align: left;
+
+    .navbar-search{
+        position: relative;
+        input{
+            width: 200px;
+            height: 30px;
+            border: 1px solid rgba($color: #000000, $alpha: 0.3);
+            padding: 0px 15px;
+        }
+        input:focus{
+            outline: none;
+            border: 1px solid rgba($color: #000000, $alpha: 0.8);
+        }
+    }
+
+    .navbar-filter{
+        padding-top: 30px;
+        font-size: 15px;
+        font-weight: 100;
+        color: #212529;
+        font-family: 'Poppins', sans-serif, monospace;
+
+        .navbar-filter-radio{
+            display: flex;
+            align-items: center;
+            padding: 15px 0px;
+            input{
+                margin-top: 2px;
+            }
+            label{
+                margin-left: 15px;
+            }
+        }
+    }
+}
