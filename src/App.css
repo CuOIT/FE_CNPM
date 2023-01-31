@@ -10,7 +10,7 @@ html,body{
   height: 100%;
   width: 100%;
   place-items: center;
-  background-image: linear-gradient(0, rgba(242, 0, 255, 0.5), #ccc),url(coffee-bar.jpg);
+  background-image: linear-gradient(0, rgba(242, 0, 255, 0.5), #ccc),url(../public/coffee-bar.jpg);
   background-size: 100%;
 }
 ::selection{
