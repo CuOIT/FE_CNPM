@@ -49,7 +49,15 @@ function App() {
               <div class="pass-link"><a href="#">Forgot password?</a></div>
               <div class="field btn">
                 <div class="btn-layer"></div>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login as User" />
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Login as Admin" />
+              </div>
+              <div class="field btn">
+                <div class="btn-layer"></div>
+                <input type="submit" value="Login as Staff" />
               </div>
               <div class="signup-link">Not a member? <a href="">Signup now</a></div>
             </form>
