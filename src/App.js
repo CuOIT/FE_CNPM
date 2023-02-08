@@ -32,7 +32,7 @@ function App() {
         </div>
         <div class="form-container">
           <div class="slide-controls">
-            <input type="radio" name="slide" id="login" checked />
+            <input type="radio" name="slide" id="login" />
             <input type="radio" name="slide" id="signup" />
             <label for="login" class="slide login">Login</label>
             <label for="signup" class="slide signup">Signup</label>
