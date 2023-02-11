@@ -21,6 +21,7 @@ export const fetchInstant = (url, method, payload, params, configHeader) => {
     "Content-Type": "application/json",
     Accept:
       "text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8",
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Credentials": true,
   };
@@ -52,7 +53,7 @@ export const fetchInstant = (url, method, payload, params, configHeader) => {
   if (METHOD !== baseMETHOD.GET) {
     bodyFetch["body"] = JSON.stringify(bodyJSON);
   }
-  console.log(bodyFetch);
+  console.log(urlParse);
 
   const fetchRequest = fetch(urlParse, bodyFetch);
 

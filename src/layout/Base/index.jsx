@@ -1,7 +1,9 @@
+import Nav from "../../components/Nav/Nav";
+
 const BaseLayout = ({ children }) => {
   return (
     <>
-      {/* <custom header /> */}
+      <Nav />
       {children}
       {/* <custom footer /> */}
     </>

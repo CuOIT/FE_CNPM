@@ -1,51 +1,28 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
+import * as Types from "./../../redux/constants";
 // import { fetchInstant } from "@/config";
 // import { METHOD } from "@/constants";
 import "./Auth.css";
 const LoginForm = () => {
-  // const [username,  setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const handleSubmit = async (event) => {
-  //  // event.preventDefault();
-  //   console.log(`Username: ${username} Password: ${password}`);
-  //   try {
-  //     const response = await fetch("https://your-api.com/login", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ username, password }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(response.statusText);
-  //     }
-  //     const data = await response.json();
-  //     console.log(data);
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-
-  // };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const loginText = document.querySelector(".title-text.login");
-    console.log(loginText);
+    const loginText = document.querySelector(".title.login");
     const loginForm = document.querySelector("form.login");
     const loginBtn = document.querySelector(".slide.login");
     const signupBtn = document.querySelector(".slide.signup");
     const signupLink = document.querySelector("form .signup-link a");
     signupBtn.onclick = () => {
       loginForm.style.marginLeft = "-50%";
-      //loginText.style.marginLeft = "-50%";
+      loginText.style.marginLeft = "-50%";
     };
     loginBtn.onclick = () => {
       loginForm.style.marginLeft = "0%";
-      //loginText.style.marginLeft = "0%";
+      loginText.style.marginLeft = "0%";
     };
     signupLink.onclick = () => {
       signupBtn.click();
@@ -64,52 +41,52 @@ const LoginForm = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     const { phone, password } = event.target;
-
+    console.log(event.target);
     const payload = {
       phone: phone.value,
-      password: password.value,
+      user_password: password.value,
+      // role,
     };
     console.log(payload);
-    fetchInstant("/login", METHOD.POST, payload).then((res) => {
-      console.log(res.data);
+    fetchInstant("/api/login", METHOD.POST, payload).then((res) => {
+      console.log(res);
+      if (res.code === 0 && res.message === "OK") {
+        dispatch({
+          type: Types.LOGIN,
+          payload: res.user,
+        });
+      }
     });
+  };
 
-    // setUsername("Cuong");
-
-    // try {
-
-    //   const response = await fetch("https://localhost:3000/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       // phone,
-    //       // username,
-    //       // email,
-    //       // password,
-    //       // birthday,
-    //       // role,
-    //       // gender,
-    //       username
-    //     }),
-    //   });
-    //   window.alert("TRY");
-
-    //   if (!response.ok) {
-    //     throw new Error(response.statusText);
-    //   }
-    //   const data = await response.json();
-    //   console.log(data);
-    // } catch (error) {
-    //   setError(error.message);
-    // }
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const { phone, password, confirmPassword, name, email, birthday } =
+      event.target;
+    console.log(phone, password, confirmPassword, name, email, birthday);
+    const payload = {
+      phone: phone.value,
+      user_password: password.value,
+      //confirmPassword: confirmPassword.value,
+      user_name: name.value,
+      email: email.value,
+      birthday: birthday.value,
+    };
+    fetchInstant("/api/create-new-user", METHOD.POST, payload).then((res) => {
+      console.log(res);
+    });
+  };
+  const handleClickUser = (event) => {
+    setRole("User");
+  };
+  const handleClickStaff = (event) => {
+    setRole("Staff");
+  };
+  const handleClickAdmin = (event) => {
+    setRole("Admin");
   };
   return (
-    <div className="App">
-      <form>
-        <button>Click me</button>
-      </form>
+    <div className="login-dad">
       <div className="wrapper">
         <div className="title-text">
           <div className="title login">Login Form</div>
@@ -152,21 +129,36 @@ const LoginForm = () => {
               </div>
               <div className="field btn">
                 <div className="btn-layer"></div>
-                <input id="loginAsUser" type="submit" value="Login as User" />
+                <input
+                  id="loginAsUser"
+                  type="submit"
+                  value="Login as User"
+                  onClick={handleClickUser}
+                />
               </div>
               <div className="field btn">
                 <div className="btn-layer"></div>
-                <input id="loginAsAdmin" type="submit" value="Login as Admin" />
+                <input
+                  id="loginAsAdmin"
+                  type="submit"
+                  value="Login as Admin"
+                  onClick={handleClickAdmin}
+                />
               </div>
               <div className="field btn">
                 <div className="btn-layer"></div>
-                <input id="LoginAsStaff" type="submit" value="Login as Staff" />
+                <input
+                  id="LoginAsStaff"
+                  type="submit"
+                  value="Login as Staff"
+                  onClick={handleClickStaff}
+                />
               </div>
               <div className="signup-link">
                 Not a member? <a href="">Signup now</a>
               </div>
             </form>
-            <form className="signup">
+            <form className="signup" onSubmit={handleSignUp}>
               <div className="field">
                 <input id="phone" type="text" placeholder="Phone" required />
               </div>
