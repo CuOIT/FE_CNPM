@@ -1,5 +1,6 @@
 import CartPage from "../../components/Cart/Cart";
-import HomePage from "../../components/Home/Homepage";
+import HistoryPage from "../../components/History/HistoryPage";
+import HomePage from "../../components/Home/HomePage";
 import ProductPage from "../../components/Product/ProductPage";
 import ProfilePage from "../../components/Profile";
 import BaseLayout from "../../layout/Base";
@@ -25,4 +26,9 @@ export const UserPrivateRouter = [
     element: CartPage,
     layout: BaseLayout,
   },
+    {
+    path: "/history",
+    element: HistoryPage,
+    layout: BaseLayout,
+    }
 ];

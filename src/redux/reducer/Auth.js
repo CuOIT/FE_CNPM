@@ -8,7 +8,7 @@ export const AuthReducer = (state = initialState, action) => {
       let cloneState = JSON.parse(JSON.stringify(state));
       cloneState = action.payload;
       JSON.stringify(localStorage.setItem("idUser", action.payload.id));
-      return cloneState;
+      return cloneState;  
     }
     case Types.ADD_TO_CART: {
       let cloneState = JSON.parse(JSON.stringify(state));

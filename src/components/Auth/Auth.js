@@ -192,6 +192,14 @@ const LoginForm = () => {
                   required
                 />
               </div>
+              <div className="field">
+                <input
+                  id="birthday"
+                  type="date"
+                  placeholder="Birthday"
+                  required
+                />
+              </div>
               <div className="field btn">
                 <div className="btn-layer"></div>
                 <input type="submit" value="Signup" />

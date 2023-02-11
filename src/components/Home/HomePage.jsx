@@ -1,6 +1,5 @@
-import { render } from "@testing-library/react";
-import { redirect } from "react-router-dom";
-import "./Homepage.css";
+
+import "./HomePage.css";
 
 const HomePage = () => {
   return (
