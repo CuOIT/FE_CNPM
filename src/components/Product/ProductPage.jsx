@@ -3,8 +3,11 @@ import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
 import { formatCurrency } from "../../Utils";
 import style from "./style.module.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/action/auth";
 
 const ProductPage = () => {
+  const dispatch = useDispatch();
   const [listProduct, setListProduct] = useState([]);
 
   const getAllPoduct = () => {
@@ -13,6 +16,9 @@ const ProductPage = () => {
         setListProduct(res.items);
       }
     });
+  };
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
   };
 
   useEffect(() => {
@@ -26,7 +32,9 @@ const ProductPage = () => {
           <h3 className={`${style.name} line-clamp-2`}>{item.name}</h3>
           {/* <p>{item.description}</p> */}
           <p>Giá: {formatCurrency(item.price)}</p>
-          <button >Thêm vào giỏ hàng</button>
+          <button onClick={() => handleAddToCart(item)}>
+            Thêm vào giỏ hàng
+          </button>
         </div>
       ))}
     </div>

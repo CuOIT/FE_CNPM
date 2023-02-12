@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 
 const Nav = () => {
+  const handleLogOut = () => {
+    localStorage.clear();
+  };
   return (
     <>
       <nav className="nav">
@@ -22,7 +25,9 @@ const Nav = () => {
             <Link to="/sale">Sale</Link>
           </li>
           <li>
-            <Link to="/logout">Logout</Link>
+            <Link to="/" onClick={handleLogOut}>
+              Logout
+            </Link>
           </li>
         </ul>
         <div className="cart">

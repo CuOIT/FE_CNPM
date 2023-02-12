@@ -1,11 +1,12 @@
 import CartPage from "../../components/Cart/Cart";
 import HistoryPage from "../../components/History/HistoryPage";
 import HomePage from "../../components/Home/HomePage";
+import NotFound from "../../components/NotFound";
 import ProductPage from "../../components/Product/ProductPage";
 import ProfilePage from "../../components/Profile";
 import BaseLayout from "../../layout/Base";
 
-export const UserPrivateRouter = [
+export const StaffPrivateRouter = [
   {
     path: "/",
     element: HomePage,
@@ -26,9 +27,13 @@ export const UserPrivateRouter = [
     element: CartPage,
     layout: BaseLayout,
   },
-    {
+  {
     path: "/history",
     element: HistoryPage,
     layout: BaseLayout,
-    }
+  },
+  {
+    path: "*",
+    element: NotFound,
+  },
 ];

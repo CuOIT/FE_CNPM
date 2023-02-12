@@ -1,0 +1,18 @@
+.cartItem {
+  margin-bottom: 30px;
+}
+.cartItem > * {
+  margin: 10px 10px 0 0;
+  display: inline;
+}
+.numItem {
+  margin: 10px;
+  width: 10px;
+  display: inline;
+}
+.setNumItem {
+  float: right;
+}
+.deleteItem{
+    margin-left:10px;
+}

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
+import { updateUserDataRedux } from "../../redux/action/auth";
 import * as Types from "./../../redux/constants";
 // import { fetchInstant } from "@/config";
 // import { METHOD } from "@/constants";
@@ -41,20 +42,14 @@ const LoginForm = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     const { phone, password } = event.target;
-    console.log(event.target);
     const payload = {
       phone: phone.value,
       user_password: password.value,
       // role,
     };
-    console.log(payload);
     fetchInstant("/api/login", METHOD.POST, payload).then((res) => {
-      console.log(res);
       if (res.code === 0 && res.message === "OK") {
-        dispatch({
-          type: Types.LOGIN,
-          payload: res.user,
-        });
+        dispatch(updateUserDataRedux(res.user));
       }
     });
   };
@@ -183,14 +178,6 @@ const LoginForm = () => {
               </div>
               <div className="field">
                 <input id="email" type="text" placeholder="Email" required />
-              </div>
-              <div className="field">
-                <input
-                  id="birthday"
-                  type="date"
-                  placeholder="Birthday"
-                  required
-                />
               </div>
               <div className="field">
                 <input
