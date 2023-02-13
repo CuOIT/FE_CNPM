@@ -15,7 +15,7 @@ import { METHOD } from "../constants";
 import { useDispatch } from "react-redux";
 
 const Router = () => {
-  const dataUserRedux = useDataAuthRedux(); 
+  const dataUserRedux = useDataAuthRedux();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -52,7 +52,7 @@ const Router = () => {
     <>
       <Routes>
         {user === null
-          ?PublicRouter.map((route, index) => {
+          ? PublicRouter.map((route, index) => {
             const Container = route.element;
             const Layout = checkLayout(route);
             return (
@@ -69,8 +69,8 @@ const Router = () => {
               />
             );
           })
-          :user.role===3
-          ? // {true
+          : user.role === 3
+            ? // {true
             UserPrivateRouter.map((route, index) => {
               const Container = route.element;
               const Layout = checkLayout(route);
@@ -88,44 +88,44 @@ const Router = () => {
                 />
               );
             })
-          : user.role === 2
-          ? StaffPrivateRouter.map((route, index) => {
-              const Container = route.element;
-              const Layout = checkLayout(route);
-              return (
-                <Route
-                  path={route.path}
-                  key={index}
-                  element={
-                    <Layout>
-                      <Suspense fallback={<>Loading...</>}>
-                        <Container />
-                      </Suspense>
-                    </Layout>
-                  }
-                />
-              );
-            })
-          : user.role === 1
-          ? AdminPrivateRouter.map((route, index) => {
-              const Container = route.element;
-              const Layout = checkLayout(route);
-              return (
-                <Route
-                  path={route.path}
-                  key={index}
-                  element={
-                    <Layout>
-                      <Suspense fallback={<>Loading...</>}>
-                        <Container />
-                      </Suspense>
-                    </Layout>
-                  }
-                />
-              );
-            })
-          : <>Nothing matched</>
-          }
+            : user.role === 2
+              ? StaffPrivateRouter.map((route, index) => {
+                const Container = route.element;
+                const Layout = checkLayout(route);
+                return (
+                  <Route
+                    path={route.path}
+                    key={index}
+                    element={
+                      <Layout>
+                        <Suspense fallback={<>Loading...</>}>
+                          <Container />
+                        </Suspense>
+                      </Layout>
+                    }
+                  />
+                );
+              })
+              : user.role === 1
+                ? AdminPrivateRouter.map((route, index) => {
+                  const Container = route.element;
+                  const Layout = checkLayout(route);
+                  return (
+                    <Route
+                      path={route.path}
+                      key={index}
+                      element={
+                        <Layout>
+                          <Suspense fallback={<>Loading...</>}>
+                            <Container />
+                          </Suspense>
+                        </Layout>
+                      }
+                    />
+                  );
+                })
+                : <>Nothing matched</>
+        }
       </Routes>
     </>
   );

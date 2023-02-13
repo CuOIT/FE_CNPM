@@ -1,8 +1,63 @@
+import './HistoryPage.css';
+import Form from './Form';
+import { useState } from 'react';
+import { useDataAuthRedux } from "../../redux/selector";
+
 const HistoryPage = () => {
+
+  const dataUserRedux = useDataAuthRedux();
+  console.log(dataUserRedux);
+
+  const [showCheck1, setShowCheck1] = useState(false);
+  const [showCheck2, setShowCheck2] = useState(false);
+  const [showCheck3, setShowCheck3] = useState(false);
+  const [showCheck4, setShowCheck4] = useState(false);
+
   return (
-    <div id="welcome">
-      <h1 id="welcome-text">This is Lịch sử mua hàng</h1>
-    </div>
+    <>
+      <div class="statistic">
+        <div class="container">
+          <img class="userava" src="https://images.are.na/eyJidWNrZXQiOiJhcmVuYV9pbWFnZXMiLCJrZXkiOiI4MDQwOTc0L29yaWdpbmFsX2ZmNGYxZjQzZDdiNzJjYzMxZDJlYjViMDgyN2ZmMWFjLnBuZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MTIwMCwiaGVpZ2h0IjoxMjAwLCJmaXQiOiJpbnNpZGUiLCJ3aXRob3V0RW5sYXJnZW1lbnQiOnRydWV9LCJ3ZWJwIjp7InF1YWxpdHkiOjkwfSwianBlZyI6eyJxdWFsaXR5Ijo5MH0sInJvdGF0ZSI6bnVsbH19?bc=0" alt="Ava User"></img>
+          <h2>{dataUserRedux.user_name}</h2>
+        </div>
+        <div class="option">
+          <div>
+            <button onClick={() => setShowCheck1(true)} class="thongkeelement">Lịch sử mua hàng</button>
+            <Form
+              title={'Lịch sử mua hàng'}
+              body={'check 1 body'}
+              show={showCheck1}
+              onHide={() => setShowCheck1(false)}
+            />
+            <button onClick={() => setShowCheck2(true)} class="thongkeelement">Voucher đã dùng</button>
+            <Form
+              title={'Voucher đã dùng'}
+              body={'check 2 body'}
+              show={showCheck2}
+              onHide={() => setShowCheck2(false)}
+            />
+          </div>
+          <div>
+            <button onClick={() => setShowCheck3(true)} class="thongkeelement">Tổng số tiền đã dùng</button>
+            <Form
+              title={'Tổng số tiền đã dùng'}
+              body={<div>
+                <h1>Hello</h1>
+              </div>}
+              show={showCheck3}
+              onHide={() => setShowCheck3(false)}
+            />
+            <button onClick={() => setShowCheck4(true)} class="thongkeelement">Sản phẩm đã dùng</button>
+            <Form
+              title={'Sản phẩm đã dùng'}
+              body={'check 4 body'}
+              show={showCheck4}
+              onHide={() => setShowCheck4(false)}
+            />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 export default HistoryPage;
