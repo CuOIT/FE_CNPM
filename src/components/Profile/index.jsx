@@ -2,8 +2,8 @@ import React from "react";
 import { useDataAuthRedux } from "../../redux/selector";
 
 const ProfilePage = () => {
-  const dataUserLocal = JSON.parse(localStorage.getItem("user"));
+  const dataUserRedux = useDataAuthRedux;
 
-  return <>{JSON.stringify(dataUserLocal)}</>;
+  return <>{JSON.stringify(dataUserRedux)}</>;
 };
 export default ProfilePage;

@@ -3,18 +3,16 @@ import * as Types from "../../constants";
 
 export const updateUserDataRedux = (data) => {
   return {
-    type: Types.LOGIN,
+    type: Types.LOG_IN,
     payload: data,
   };
 };
 
-// export const logout = () => {
-//   return () => {
-//     dispatch({
-//       type: Types.LOGOUT,
-//     });
-//   };
-// };
+export const logout = () => {
+  return {
+    type: Types.LOG_OUT,
+  };
+};
 
 export const addToCart = (item) => {
   return {

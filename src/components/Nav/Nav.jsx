@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Nav.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/action/auth";
 
 const Nav = () => {
+  const dispatch = useDispatch();
   const handleLogOut = () => {
-    localStorage.clear();
+    dispatch(logout);
   };
   return (
     <>
