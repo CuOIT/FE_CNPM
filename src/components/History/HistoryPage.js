@@ -1,12 +1,32 @@
 import './HistoryPage.css';
 import Form from './Form';
-import { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useDataAuthRedux } from "../../redux/selector";
+import { fetchInstant } from "../../config";
+import { METHOD } from "../../constants";
 
 const HistoryPage = () => {
 
   const dataUserRedux = useDataAuthRedux();
-  console.log(dataUserRedux);
+  // console.log(dataUserRedux);
+
+  // const dispatch = useDispatch();
+  // const [listPurchase, setListPurchase] = useState([]);
+
+  // const getAllPurchase = () => {
+  //   fetchInstant("/api/get-all-items", METHOD.GET).then((res) => {
+  //     console.log(res.items);
+  //     if (res.code === 0 && res.message === "OK") {
+  //       setListPurchase(res.items);
+  //     }
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getAllPurchase();
+  // }, []);
+
 
   const [showCheck1, setShowCheck1] = useState(false);
   const [showCheck2, setShowCheck2] = useState(false);
@@ -22,7 +42,7 @@ const HistoryPage = () => {
         </div>
         <div class="option">
           <div>
-            <button onClick={() => setShowCheck1(true)} class="thongkeelement">Lịch sử mua hàng</button>
+            <button onClick={() => setShowCheck1(true)} class="thongkeelement main">Lịch sử mua hàng</button>
             <Form
               title={'Lịch sử mua hàng'}
               body={'check 1 body'}

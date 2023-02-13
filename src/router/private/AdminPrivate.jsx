@@ -5,6 +5,7 @@ import NotFound from "../../components/NotFound";
 import ProductPage from "../../components/Product/ProductPage";
 import ProfilePage from "../../components/Profile";
 import BaseLayout from "../../layout/Base";
+import AdminDataPage from "../../components/AdminData/AdminData";
 
 export const AdminPrivateRouter = [
   {
@@ -29,7 +30,7 @@ export const AdminPrivateRouter = [
   },
   {
     path: "/history",
-    element: HistoryPage,
+    element: AdminDataPage,
     layout: BaseLayout,
   },
   {
