@@ -1,5 +1,5 @@
 
-import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Search, Filter, Page, Inject, Toolbar } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Filter, Page, Inject, Toolbar } from '@syncfusion/ej2-react-grids';
 import './Orders.css';
 import { registerLicense } from '@syncfusion/ej2-base';
 import {  ordersGrid } from '../DataConfig/dummy';
@@ -18,8 +18,8 @@ const Orders3 = () => {
   const [listOrder, setListOrder] = useState([]);
   
   const getListOrder = () => {
-    fetchInstant("/api/get-staff-order-cancel", METHOD.GET).then((res) => {
-      if (res.code === 0 && res.message === "OK") {
+    fetchInstant("/api/get-staff-order", METHOD.GET,null,{status:-1}).then((res) => {
+      if (res.code === 0) {
         setListOrder(res.order);
         console.log(res.order);
       }
