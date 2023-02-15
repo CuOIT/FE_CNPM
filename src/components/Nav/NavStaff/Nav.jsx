@@ -1,44 +1,38 @@
 import { Link } from "react-router-dom";
 import "./Nav.css";
 import { useDispatch } from "react-redux";
-import { logout } from "../../redux/action/auth";
+import { logout } from "../../../redux/action/auth";
 
-const Nav = () => {
+const NavStaff = () => {
   const dispatch = useDispatch();
   const handleLogOut = () => {
-    dispatch(logout);
+    dispatch(logout());
   };
   return (
     <>
-      <nav className="nav">
+      <nav className="navStaff">
         <Link to="/" className="site-title">
           KA
         </Link>
         <ul>
           <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
             <Link to="/product">Product</Link>
           </li>
           <li>
-            <Link to="/history">History</Link>
-          </li>
-          <li>
-            <Link to="/sale">Sale</Link>
+            <Link to="/sales">Sales</Link>
           </li>
           <li>
             <Link to="/" onClick={handleLogOut}>
               Logout
             </Link>
           </li>
+            <div className="cart">
+              <Link to="/cart">Cart</Link>
+            </div>
         </ul>
-        <div className="cart">
-          <Link to="/cart">Cart</Link>
-        </div>
       </nav>
     </>
   );
 };
 
-export default Nav;
+export default NavStaff;

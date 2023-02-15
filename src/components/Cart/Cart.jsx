@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import { deleteItemInCart, updateCartById } from "../../redux/action/auth";
 import { useDataAuthRedux } from "../../redux/selector";
 import { useDispatch } from "react-redux";
+import { METHOD } from "../../constants";
+import { formatCurrency } from "../../Utils";
 import "./Cart.css";
+import { fetchInstant } from "../../config/index";
 const CartPage = () => {
   const dataAuthRedux = useDataAuthRedux();
-  console.log(dataAuthRedux);
   const dispatch = useDispatch();
 
   const [cart, setCart] = useState([]);
+  const [voucher, setVoucher] = useState({});
+  const [order, setOrder] = useState({});
 
   const handleUpdateCart = (item, type) => {
     if (type === "increase") {
@@ -24,49 +28,32 @@ const CartPage = () => {
   const handleDeleteCart = (item) => {
     dispatch(deleteItemInCart(item.id));
   };
+  const handleVoucher = () => {
+    const voucher_code = document.getElementById("voucherField").value;
+    console.log(voucher_code);
+    fetchInstant("/api/get-voucher-info-by-code", METHOD.GET, null, {
+      voucher_code: voucher_code,
+    }).then((res) => {
+      setVoucher(res.vouchers[0]);
+    });
+  };
   useEffect(() => {
     if (dataAuthRedux.cart) {
       setCart(dataAuthRedux.cart);
     } else {
-      console.log("HI");
     }
   }, [dataAuthRedux?.cart]);
 
   return (
-    // <>
-    //   <div>
-    //     {cart.map((item, index) => (
-    //       <div key={index}>
-    //         <p>{item.name}</p>
-    //         <div>
-    //           <button onClick={() => handleUpdateCart(item, "decrease")}>
-    //             -
-    //           </button>
-    //           <p>{item.amount}</p>
-    //           <button onClick={() => handleUpdateCart(item, "increase")}>
-    //             +
-    //           </button>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </>
-    <div class="h-100" style={{ backgroundColor: "white" }}>
-      <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-10">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-              <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-              <div>
-                <p class="mb-0">
-                  <span class="text-muted">Sort by:</span>{" "}
-                  <a href="#!" class="text-body">
-                    price <i class="fas fa-angle-down mt-1"></i>
-                  </a>
-                </p>
-              </div>
+    <div className="h-100" style={{ backgroundColor: "white" }}>
+      <div className="container h-100 py-5">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-10">
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              <h3 className="fw-normal mb-0 text-black">My Cart</h3>
+              <div></div>
             </div>
-
+            {/* Item */}
             <div>
               {cart.map((item, index) => (
                 <div key={index} className="cartItem">
@@ -83,182 +70,83 @@ const CartPage = () => {
                       className="deleteItem"
                       onClick={() => handleDeleteCart(item)}
                     >
-                      {" "}
                       Delete
                     </button>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
+            <div className="preTotal">
+              {formatCurrency(
+                cart.reduce((sum, item) => {
+                  return sum + item.price * item.amount;
+                }, 0)
+              )}
             </div>
-          </div>
-        </div> */}
 
-            {/* <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div> */}
-            {/* 
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-            <div class="card mb-4">
-              <div class="card-body p-4 d-flex flex-row">
-                <div class="form-outline flex-fill">
+            <div className="card mb-4">
+              <div className="card-body p-4 d-flex flex-row">
+                <div className="form-outline flex-fill">
+                  <label className="form-label" for="form1">
+                    Address
+                  </label>
                   <input
-                    type="text"
-                    id="form1"
-                    class="form-control form-control-lg"
+                    type="address"
+                    id="addressField"
+                    className="form-control form-control-lg"
                   />
-                  <label class="form-label" for="form1">
+                </div>
+              </div>
+
+              <div className="payMethods card-body p-4 d-flex flex-row">
+                <div className="container">
+                  <div class="form-group">
+                    <label for="payment-method">Payment Method:</label>
+                    <select class="form-control" id="payment-method">
+                      <option value="cash">Cash</option>
+                      <option value="banking">Banking</option>
+                      <option value="momo">Momo</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-body p-4 d-flex flex-row">
+                <div className="form-outline flex-fill">
+                  <input
+                    type="voucher"
+                    id="voucherField"
+                    className="form-control form-control-lg"
+                  />
+                  <label className="form-label" for="form1">
                     Discound code
                   </label>
                 </div>
                 <button
                   type="button"
-                  class="btn btn-outline-warning btn-lg ms-3"
+                  className="btn btn-outline-warning btn-lg ms-3"
+                  onClick={() => handleVoucher()}
                 >
                   Apply
                 </button>
               </div>
+              <div className="detail">
+                <div>Voucher: {-voucher.value ? voucher.value : 0}</div>
+                <div>
+                  Total price:
+                  {cart.reduce((sum, item) => {
+                    return sum + item.price * item.amount;
+                  }, 0) - (voucher.value ? voucher.value : 0)}
+                </div>
+              </div>
             </div>
 
-            <div class="card">
-              <div class="card-body">
-                <button type="button" class="btn btn-warning btn-block btn-lg">
+            <div className="card">
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-warning btn-block btn-lg"
+                >
                   Proceed to Pay
                 </button>
               </div>

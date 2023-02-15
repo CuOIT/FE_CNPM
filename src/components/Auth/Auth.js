@@ -30,15 +30,6 @@ const LoginForm = () => {
       return false;
     };
   }, []);
-  const [error, setError] = useState("");
-  const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [role, setRole] = useState("");
-  const [gender, setGender] = useState("");
-
   const handleLogin = (event) => {
     event.preventDefault();
     const { phone, password } = event.target;
@@ -48,6 +39,7 @@ const LoginForm = () => {
       // role,
     };
     fetchInstant("/api/login", METHOD.POST, payload).then((res) => {
+      console.log(res);
       if (res.code === 0 && res.message === "OK") {
         dispatch(updateUserDataRedux(res.user));
       }
@@ -70,15 +62,6 @@ const LoginForm = () => {
     fetchInstant("/api/create-new-user", METHOD.POST, payload).then((res) => {
       console.log(res);
     });
-  };
-  const handleClickUser = (event) => {
-    setRole("User");
-  };
-  const handleClickStaff = (event) => {
-    setRole("Staff");
-  };
-  const handleClickAdmin = (event) => {
-    setRole("Admin");
   };
   return (
     <div className="login-dad">
@@ -124,30 +107,7 @@ const LoginForm = () => {
               </div>
               <div className="field btn">
                 <div className="btn-layer"></div>
-                <input
-                  id="loginAsUser"
-                  type="submit"
-                  value="Login as User"
-                  onClick={handleClickUser}
-                />
-              </div>
-              <div className="field btn">
-                <div className="btn-layer"></div>
-                <input
-                  id="loginAsAdmin"
-                  type="submit"
-                  value="Login as Admin"
-                  onClick={handleClickAdmin}
-                />
-              </div>
-              <div className="field btn">
-                <div className="btn-layer"></div>
-                <input
-                  id="LoginAsStaff"
-                  type="submit"
-                  value="Login as Staff"
-                  onClick={handleClickStaff}
-                />
+                <input id="loginBtn" type="submit" value="Log In" />
               </div>
               <div className="signup-link">
                 Not a member? <a href="">Signup now</a>
