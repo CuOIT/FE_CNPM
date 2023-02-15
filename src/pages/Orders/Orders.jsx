@@ -22,31 +22,39 @@ const Orders = () => {
       <div>
         <button onClick={
           () => {
-            toast.success("Sucessfull !", { autoClose: 1000, hideProgressBar: true, })
+            toast.success("Sucessfull !", { position: "top-left", autoClose: 500, hideProgressBar: true, })
           }}
-          className="empData1  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 border
+          className="empData1  bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-2 mr-1 border
        border-blue-700 rounded">Confirm</button>
         <button onClick={
           () => {
-            toast.success("Sucessfull !", { autoClose: 1000, hideProgressBar: true, })
-          }} className="empData2  bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 border
+            toast.success("Sucessfull !", { position: "top-left", autoClose: 500, hideProgressBar: true, })
+          }} className="empData2  bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-2 border
        border-blue-700 rounded">Cancel</button>
       </div>
     );
   };
   const recordClick = (args) => {
-    let isSuccessful = true
-    if (args.target.classList.contains('empData2'))
-      isSuccessful = false
-    let rowObj = grid.getRowObjectFromUID(closest(args.target, '.e-row').getAttribute('data-uid'));
-    let id = rowObj.data.id;
-    //console.log(rowObj);
-    console.log(id);
-    fetchInstant("/api/update-status-order", METHOD.POST, { id: id, isSuccessful: isSuccessful }).then((res) => {
-      console.log(res);
-    });
-
-    setSubmit(!submit);
+    if (args.target.classList.contains('empData1')) {
+      let rowObj = grid.getRowObjectFromUID(closest(args.target, '.e-row').getAttribute('data-uid'));
+      let id = rowObj.data.id;
+      //console.log(rowObj);
+      console.log(id);
+      fetchInstant("/api/update-status-order", METHOD.POST, { id: id, isSuccessful: true }).then((res) => {
+        console.log(res);
+      });
+      setSubmit(true);
+    }
+    else if (args.target.classList.contains('empData2')) {
+      let rowObj = grid.getRowObjectFromUID(closest(args.target, '.e-row').getAttribute('data-uid'));
+      let id = rowObj.data.id;
+      //console.log(rowObj);
+      console.log(id);
+      fetchInstant("/api/update-status-order", METHOD.POST, { id: id, isSuccessful: false }).then((res) => {
+        console.log(res);
+      });
+      setSubmit(true);
+    }
   };
 
   const [listOrder, setListOrder] = useState([]);
@@ -90,7 +98,7 @@ const Orders = () => {
 
           {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
 
-          <ColumnDirective headerText='' width='200' template={gridTemplate} textAlign='Right' isPrimaryKey='true' />
+          <ColumnDirective headerText='' width='170' template={gridTemplate} textAlign='Right' isPrimaryKey='true' />
 
 
         </ColumnsDirective>
