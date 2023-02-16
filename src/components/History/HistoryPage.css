@@ -2,14 +2,23 @@
     border-radius: 50%;
 }
 
+.statistic {
+    background-image: url('https://wallpapercrafter.com/sizes/2048x1152/273537-coffee-shop-coffe-cup-cup-and-saucer-and-table-hd.jpg');
+    overflow: hidden;
+    background-size: cover;
+    height: 100vh;
+    background-attachment: fixed;
+}
+
 .container {
     margin-top: 50px;
     display: grid;
     place-items: center;
     margin-bottom: 20px;
+    color: white;
 }
 
-h2 {
+.name {
     margin-top: 20px;
 }
 
@@ -23,6 +32,19 @@ h2 {
     height: 100px;
     font-size: 40px;
     border-color: transparent;
-    background-color: rgb(210, 216, 202, 70);
-    color: rgb(0, 0, 0);
+    background-image: linear-gradient(to right, #F0C27B 0%, #4B1248 51%, #F0C27B 100%);
+    color: white;
+    border-radius: 10px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 0 20px #eee;
+}
+
+
+.thongkeelement:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
 }
