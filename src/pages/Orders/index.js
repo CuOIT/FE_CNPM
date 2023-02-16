@@ -47,25 +47,7 @@ export default function Order() {
               </div>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
-                  <button
-                    onClick={() => setOption(0)}
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Pending Order
-                  </button>
-
-                  <button
-                    onClick={() => setOption(1)}
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Success Order
-                  </button>
-                  <button
-                    onClick={() => setOption(2)}
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Cancel Order
-                  </button>
+                 
                 </div>
               </div>
             </div>
