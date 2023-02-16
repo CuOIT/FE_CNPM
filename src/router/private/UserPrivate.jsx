@@ -1,4 +1,5 @@
 import CartPage from "../../components/Cart/Cart";
+import SalePage from "../../components/Sale/SalePage";
 import HistoryPage from "../../components/History/HistoryPage";
 import HomePage from "../../components/Home/HomePage";
 import NotFound from "../../components/NotFound";
@@ -25,6 +26,11 @@ export const UserPrivateRouter = [
   {
     path: "/cart",
     element: CartPage,
+    layout: BaseLayout,
+  },
+  {
+    path: "/sale",
+    element: SalePage,
     layout: BaseLayout,
   },
   {

@@ -1,14 +1,12 @@
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const REGISTER_ACCOUNT = 'REGISTER_ACCOUNT';
-export const VERIFY_ACCOUNT = 'VERIFY_ACCOUNT';
-export const RECOVERY = 'RECOVERY';
+export const LOG_IN = "LOGIN";
+export const LOG_OUT = "LOGOUT";
+export const REGISTER_ACCOUNT = "REGISTER_ACCOUNT";
+export const VERIFY_ACCOUNT = "VERIFY_ACCOUNT";
+export const RECOVERY = "RECOVERY";
 
-export const ADD_TO_CART = 'ADD_TO_CART';
-export const DELETE_ITEM_CART = 'DELETE_ITEM_CART';
-export const UPDATE_ITEM_CART = 'UPDATE_ITEM_CART';
-
-
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_ITEM_CART = "DELETE_ITEM_CART";
+export const UPDATE_ITEM_CART = "UPDATE_ITEM_CART";
 
 // ---------------Type---------------
 
