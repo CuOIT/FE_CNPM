@@ -10,7 +10,7 @@
 
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import Preloader from '../layout/Preloader';
+import Preloader from './Preloader';
 import PropTypes from 'prop-types';
 
 const Vouchers = ({ voucher: { voucher, loading } }) => {
