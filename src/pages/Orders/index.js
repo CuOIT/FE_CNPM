@@ -1,6 +1,4 @@
 import Orders from "./Orders";
-import Orders2 from "./Orders2";
-import Orders3 from "./Orders3";
 
 import LogOut from './LogOut';
 
@@ -14,13 +12,6 @@ let tmp = false;
 export { tmp };
 
 export default function Order() {
-  const [option, setOption] = useState(0);
-
-  const Table = () => {
-    if (option === 0) return <Orders />;
-    if (option === 1) return <Orders2 />;
-    if (option === 2) return <Orders3 />;
-  };
 
   const [open, setOpen] = useState(false);
   const handleClick = () => {
@@ -68,7 +59,7 @@ export default function Order() {
 
       <main className="bg-white" style={{minHeight:700}}>
         <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-          <Table />
+          <Orders />
         </div>
       </main>
       
