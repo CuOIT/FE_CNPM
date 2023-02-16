@@ -1,0 +1,39 @@
+.wrapper {
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 20px;
+    padding: 20px;
+  }
+  .voucherItem {
+    width: 300px;
+    height: fit-content;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin-right: 20px;
+    transition: 0.3s;
+    background-color: aliceblue;
+    text-align: center;
+  }
+  /* .voucherItem img {
+    width: 100%;
+    height: auto;
+  } */
+  .name {
+    margin-top: 12px;
+    height: 67.2px;
+  }
+  .voucherItem button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+  }
+  
+  .voucherItem:hover {
+    box-shadow: 2px 2px 4px 6px rgba(#000000c9);
+  }
+  
