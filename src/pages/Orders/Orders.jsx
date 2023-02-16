@@ -103,7 +103,7 @@
 
     useEffect(() => {
       getListOrder3();
-    }, []);
+    }, [submit]);
 
 
     const [activeTable, setActiveTable] = useState(1);
@@ -131,13 +131,19 @@
             </button>
             <button
               className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 2 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 2 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
-              onClick={() => handleSwitchTable(2)}
+              onClick={() => {
+                handleSwitchTable(2);
+                getListOrder2();
+              }}
             >
               Table 2
             </button>
             <button
               className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 3 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 3 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
-              onClick={() => handleSwitchTable(3)}
+              onClick={() => {
+                handleSwitchTable(3);
+                getListOrder3();
+              }}
             >
               Table 3
             </button>
@@ -152,6 +158,7 @@
               toolbar={toolbarOptions}
               allowTextWrap={true}
               onClick={recordClick}
+              ref={g => grid = g}
             >
               <ColumnsDirective>
                 {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
