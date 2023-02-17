@@ -3,7 +3,7 @@
   import './Orders.css';
   import { registerLicense } from '@syncfusion/ej2-base';
   import { closest } from '@syncfusion/ej2-base';
-  import { ordersGrid } from '../DataConfig/dummy';
+  import { ordersGrid,  ordersGrid2} from '../DataConfig/dummy';
   import { ToastContainer, toast } from 'react-toastify';
   import React, { useEffect, useState } from "react";
   import 'react-toastify/dist/ReactToastify.css';
@@ -32,7 +32,7 @@
     );
   }
 
-  
+
   const Orders = () => {
     
     const toolbarOptions = ['Search'];
@@ -146,6 +146,7 @@
               dataSource={listOrder}
               allowPaging
               allowSorting
+              pageSettings={{ pageSize: 30 }}
               toolbar={toolbarOptions}
               allowTextWrap={true}
               onClick={recordClick}
@@ -154,7 +155,7 @@
             >
               <ColumnsDirective>
                 {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
-                <ColumnDirective  width='170' template={gridTemplate} textAlign='Right' isPrimaryKey='true' />
+                <ColumnDirective  width='160' template={gridTemplate} textAlign='Right' isPrimaryKey='true' />
               </ColumnsDirective>
               <Inject services={[Resize, Sort, Filter, Toolbar, Page]} />
             </GridComponent>
@@ -165,11 +166,12 @@
               dataSource={listOrder2}
               allowPaging
               allowSorting
+              pageSettings={{ pageSize: 30 }}
               toolbar={toolbarOptions}
               allowTextWrap={true}
             >
               <ColumnsDirective>
-                {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
+                {ordersGrid2.map((item, index) => <ColumnDirective key={index} {...item} />)}
               </ColumnsDirective>
               <Inject services={[Resize, Sort, Filter, Toolbar, Page]} />
             </GridComponent>
@@ -179,11 +181,12 @@
               dataSource={listOrder3}
               allowPaging
               allowSorting
+              pageSettings={{ pageSize: 30 }}
               toolbar={toolbarOptions}
               allowTextWrap={true}
             >
               <ColumnsDirective>
-                {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
+                {ordersGrid2.map((item, index) => <ColumnDirective key={index} {...item} />)}
               </ColumnsDirective>
               <Inject services={[Resize, Sort, Filter, Toolbar, Page]} />
             </GridComponent>

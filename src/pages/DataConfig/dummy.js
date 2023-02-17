@@ -91,6 +91,76 @@ export const ordersGrid = [
     
     textAlign: 'Center',
     
+    width: '100',
+  },
+  {
+    field: 'voucher_code',
+    headerText: 'Voucher',
+    
+    textAlign: 'Center',
+    
+    width: '110',
+  },
+  {
+    field: 'shipping_address',
+    headerText: 'Address',
+    width: '170',
+    textAlign: 'Center',
+  },
+  {
+    field:"createdAt",
+    headerText: 'Create Time',
+    width: '190',
+    textAlign: 'Center',
+  },
+  { 
+    field: 'status',
+    headerText: 'Status',
+    template: gridOrderStatus, 
+    textAlign: 'Center',
+    width: '100',
+  },
+];
+
+export const ordersGrid2 = [
+  {
+    field: 'id',
+    headerText: 'ID',
+    width: '70',
+    textAlign: 'Center',
+  },
+
+  {
+    field: 'user_name',
+    headerText: 'Customer Name',
+    width: '130',
+    textAlign: 'Center',
+  },
+
+  {
+    field:"detail_order",
+    headerText: 'Item',
+    width: '190',
+    template: gridOrderText,
+    textAlign: 'Center',
+  },
+  
+
+  {
+    field: 'total_price',
+    headerText: 'Total Price',
+    
+    textAlign: 'Center',
+    
+    width: '120',
+  },
+
+  {
+    field: 'voucher_code',
+    headerText: 'Voucher',
+    
+    textAlign: 'Center',
+    
     width: '120',
   },
   
@@ -101,8 +171,8 @@ export const ordersGrid = [
     textAlign: 'Center',
   },
   {
-    field:"createdAt",
-    headerText: 'Create Time',
+    field:"updatedAt",
+    headerText: 'Update Time',
     width: '190',
     textAlign: 'Center',
   },
