@@ -1,14 +1,16 @@
 // import LoginForm from "@/services/Auth/Auth";
 
 import LoginForm from "../../components/Auth/Auth";
-import NotFound from "../../components/Voucher/VoucherPage";
+import VoucherUser from "../../components/Voucher/VoucherUser";
+
 export const PublicRouter = [
   {
-    path: "/",
+    path: "/login",
     element: LoginForm,
   },
+
   {
-    path: "*",
-    element: NotFound,
+    path: "/voucher/user",
+    element: VoucherUser,
   },
 ];

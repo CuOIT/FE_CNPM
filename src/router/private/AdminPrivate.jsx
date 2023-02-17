@@ -1,7 +1,7 @@
 import CartPage from "../../components/Cart/Cart";
 import HistoryPage from "../../components/History/HistoryPage";
 import HomePage from "../../components/Home/HomePage";
-import NotFound from "../../components/Voucher/VoucherPage";
+import VoucherAdmin from "../../components/Voucher/VoucherAdmin";
 import ProductPage from "../../components/Product/ProductPage";
 import ProfilePage from "../../components/Profile";
 import BaseLayout from "../../layout/Base";
@@ -34,7 +34,8 @@ export const AdminPrivateRouter = [
     layout: BaseLayout,
   },
   {
-    path: "*",
-    element: NotFound,
+    path: "/voucher/admin",
+    element: VoucherAdmin,
+    layout: BaseLayout,
   },
 ];

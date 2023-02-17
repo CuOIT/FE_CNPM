@@ -1,7 +1,7 @@
 import CartPage from "../../components/Cart/Cart";
 import HistoryPage from "../../components/History/HistoryPage";
 import HomePage from "../../components/Home/HomePage";
-import NotFound from "../../components/Voucher/VoucherPage";
+import VoucherUser from "../../components/Voucher/VoucherUser";
 import ProductPage from "../../components/Product/ProductPage";
 import ProfilePage from "../../components/Profile";
 import BaseLayout from "../../layout/Base";
@@ -33,7 +33,8 @@ export const UserPrivateRouter = [
     layout: BaseLayout,
   },
   {
-    path: "*",
-    element: NotFound,
+    path: "/voucher/user",
+    element: VoucherUser,
+    layout: BaseLayout,
   },
 ];
