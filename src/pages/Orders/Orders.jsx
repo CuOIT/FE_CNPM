@@ -46,7 +46,6 @@
         console.log(rowObj);
         let id = rowObj.data.id;
         //console.log(rowObj);
-        console.log(id);
         fetchInstant("/api/update-status-order", METHOD.POST, { id: id, isSuccessful: true }).then((res) => {
           getListOrder();
         });
@@ -56,7 +55,6 @@
         let rowObj = grid.getRowObjectFromUID(closest(args.target, '.e-row').getAttribute('data-uid'));
         let id = rowObj.data.id;
         //console.log(rowObj);
-        console.log(id);
         fetchInstant("/api/update-status-order", METHOD.POST, { id: id, isSuccessful: false }).then((res) => {
           getListOrder();
         });
@@ -84,7 +82,6 @@
       fetchInstant("/api/get-staff-order", METHOD.GET, null, { status: 1 }).then((res) => {
         if (res.code === 0) {
           setListOrder2(res.order);
-          console.log(res.order);
         }
       });
     };
@@ -94,7 +91,6 @@
       fetchInstant("/api/get-staff-order", METHOD.GET, null, { status: -1 }).then((res) => {
         if (res.code === 0) {
           setListOrder3(res.order);
-          console.log(res.order);
         }
       });
     };
