@@ -18,8 +18,8 @@ export  function gridOrderText(props) {
   const item=props.detail_order;
   return <div>
     {
-      item.map((item,index) =>
-        <p key={item}>
+      item.map((item) =>
+        <p key={item.name}>
           {item.name}
           &ensp;
           x{item.quantity}

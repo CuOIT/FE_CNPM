@@ -36,8 +36,8 @@ export default function Order() {
                   alt="Logo"
                 />
               </div>
-              <div class="hidden md:block">
-                <div class="ml-10 flex items-baseline space-x-4">
+              <div className="hidden md:block">
+                <div className="ml-10 flex items-baseline space-x-4">
                  
                 </div>
               </div>
@@ -46,7 +46,7 @@ export default function Order() {
               <div className="ml-4 flex items-center md:ml-6">
                 <button
                   onClick={() => setOpen(true)}
-                  class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-full"
+                  className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-full"
                 >
                   Log out
                 </button>
