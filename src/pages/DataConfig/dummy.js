@@ -79,7 +79,7 @@ export const ordersGrid = [
   {
     field:"detail_order",
     headerText: 'Item',
-    width: '210',
+    width: '190',
     template: gridOrderText,
     textAlign: 'Center',
   },
