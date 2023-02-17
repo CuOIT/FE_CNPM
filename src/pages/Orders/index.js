@@ -57,7 +57,7 @@ export default function Order() {
         </div>
       </Disclosure>
 
-      <main className="bg-white" style={{minHeight:700}}>
+      <main className="bg-white" style={{minHeight:800}}>
         <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
           <Orders />
         </div>

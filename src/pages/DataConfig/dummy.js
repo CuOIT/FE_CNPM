@@ -15,15 +15,14 @@ export const gridOrderImage = (props) => (
 );
 
 export  function gridOrderText(props) {
-  const item = props.OrderItems;
-  const quanity = props.Quanity;
+  const item=props.detail_order;
   return <div>
     {
       item.map((item,index) =>
         <p key={item}>
-          {item}
-          &ensp;&ensp;&ensp;
-          
+          {item.name}
+          &ensp;
+          x{item.quantity}
         </p>)
     }
   </div>
@@ -31,7 +30,6 @@ export  function gridOrderText(props) {
 };
 
 export default function gridOrderStatus(props){
-  console.log(props)
   let status=''
   let statusBg=''
   if (props.status == 0){
@@ -51,7 +49,7 @@ export default function gridOrderStatus(props){
   return <button
     type="button"
     style={{ background: statusBg}}
-    className="text-white py-1 px-2 capitalize rounded-2xl text-md"
+    className="text-white py-1 px-1 rounded-2xl text-md"
     
   >
     
@@ -67,22 +65,22 @@ export const ordersGrid = [
   {
     field: 'id',
     headerText: 'ID',
-    width: '80',
+    width: '70',
     textAlign: 'Center',
   },
 
   {
     field: 'user_name',
     headerText: 'Customer Name',
-    width: '120',
+    width: '130',
     textAlign: 'Center',
   },
 
   {
-    field:"name",
+    field:"detail_order",
     headerText: 'Item',
-    width: '130',
-    
+    width: '210',
+    template: gridOrderText,
     textAlign: 'Center',
   },
   
@@ -93,19 +91,19 @@ export const ordersGrid = [
     
     textAlign: 'Center',
     
-    width: '100',
+    width: '120',
   },
   
   {
     field: 'shipping_address',
     headerText: 'Address',
-    width: '150',
+    width: '170',
     textAlign: 'Center',
   },
   {
     field:"createdAt",
     headerText: 'Create Time',
-    width: '200',
+    width: '190',
     textAlign: 'Center',
   },
   { 
@@ -116,12 +114,3 @@ export const ordersGrid = [
     width: '100',
   },
 ];
-
-
-
-export const ordersData = [
-  
-];
-
-
-

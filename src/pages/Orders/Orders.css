@@ -1,7 +1,11 @@
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
-
-
+.e-grid .e-rowcell{
+    padding: 4px 5px;
+}
+.e-grid .e-rowcell:first-child{
+    padding-left: 0px;
+}
 
 @tailwind base;
 @tailwind components;

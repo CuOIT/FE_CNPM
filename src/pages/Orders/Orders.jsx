@@ -76,7 +76,6 @@
     }, [submit]);
 
     const [listOrder2, setListOrder2] = useState([]);
-
     const getListOrder2 = () => {
       fetchInstant("/api/get-staff-order", METHOD.GET, null, { status: 1 }).then((res) => {
         if (res.code === 0) {
@@ -86,12 +85,7 @@
       });
     };
 
-    useEffect(() => {
-      getListOrder2();
-    }, []);
-
     const [listOrder3, setListOrder3] = useState([]);
-
     const getListOrder3 = () => {
       fetchInstant("/api/get-staff-order", METHOD.GET, null, { status: -1 }).then((res) => {
         if (res.code === 0) {
@@ -100,10 +94,6 @@
         }
       });
     };
-
-    useEffect(() => {
-      getListOrder3();
-    }, [submit]);
 
 
     const [activeTable, setActiveTable] = useState(1);
@@ -118,16 +108,13 @@
 
         <ToastContainer />
 
-
-
-
         <div className="border-b border-gray-200">
           <nav className="flex justify-left" aria-label="Tables">
             <button
               className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 1 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 1 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
               onClick={() => handleSwitchTable(1)}
             >
-              Table 1
+              Pending
             </button>
             <button
               className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 2 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 2 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
@@ -136,7 +123,7 @@
                 getListOrder2();
               }}
             >
-              Table 2
+              Success
             </button>
             <button
               className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 3 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 3 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
@@ -145,7 +132,7 @@
                 getListOrder3();
               }}
             >
-              Table 3
+              Cancel
             </button>
           </nav>
 
@@ -159,10 +146,11 @@
               allowTextWrap={true}
               onClick={recordClick}
               ref={g => grid = g}
+              
             >
               <ColumnsDirective>
                 {ordersGrid.map((item, index) => <ColumnDirective key={index} {...item} />)}
-                <ColumnDirective headerText='' width='170' template={gridTemplate} textAlign='Right' isPrimaryKey='true' />
+                <ColumnDirective  width='170' template={gridTemplate} textAlign='Right' isPrimaryKey='true' />
               </ColumnsDirective>
               <Inject services={[Resize, Sort, Filter, Toolbar, Page]} />
             </GridComponent>
