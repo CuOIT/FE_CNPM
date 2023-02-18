@@ -21,13 +21,12 @@
           () => {
             toast.success("Sucessfull !", { position: "top-left", autoClose: 500, hideProgressBar: true, })
           }}
-          className="empData1  bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-2 mr-1 border
-      border-blue-700 rounded">Confirm</button>
+          className="empData1  bg-primary hover:bg-primary-dark text-white  px-2 py-2 mr-1 border
+           rounded">Confirm</button>
         <button onClick={
           () => {
             toast.success("Sucessfull !", { position: "top-left", autoClose: 500, hideProgressBar: true, })
-          }} className="empData2  bg-red-500 hover:bg-red-700 text-white font-bold py-1.5 px-2 border
-      border-blue-700 rounded">Cancel</button>
+          }} className="empData2  bg-danger hover:bg-danger-dark text-white  py-2 px-2 border rounded">Cancel</button>
       </div>
     );
   }
@@ -104,20 +103,20 @@
 
 
     return (
-      <div className="order m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+      <div className="order ">
 
         <ToastContainer />
 
         <div className="border-b border-gray-200">
           <nav className="flex justify-left" aria-label="Tables">
             <button
-              className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 1 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 1 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
+              className={`px-4 py-2 font-medium text-sm border-b-4 border-b-0 ${activeTable === 1 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 1 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
               onClick={() => handleSwitchTable(1)}
             >
               Pending
             </button>
             <button
-              className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 2 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 2 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
+              className={`px-4 py-2 font-medium text-sm border-b-4 border-b-0 ${activeTable === 2 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 2 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
               onClick={() => {
                 handleSwitchTable(2);
                 getListOrder2();
@@ -126,7 +125,7 @@
               Success
             </button>
             <button
-              className={`px-4 py-2 font-medium text-sm border-b-4 ${activeTable === 3 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 3 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
+              className={`px-4 py-2 font-medium text-sm border-b-4 border-b-0 ${activeTable === 3 ? 'border-indigo-500' : 'border-gray-300'} ${activeTable === 3 ? 'bg-gray-200' : 'bg-white'} hover:bg-gray-200 focus:outline-none focus:bg-gray-200`}
               onClick={() => {
                 handleSwitchTable(3);
                 getListOrder3();

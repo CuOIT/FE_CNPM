@@ -1,13 +1,48 @@
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
-.e-grid .e-rowcell{
+.e-grid .e-rowcell {
     padding: 3px 5px;
     padding-left: 0px;
 }
-.e-grid .e-rowcell:first-child{
+
+.e-grid .e-rowcell:first-child {
     padding-left: 0px;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+.border-b-4 {
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+}
+
+.border-b-0 {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.border-indigo-500 {
+    border-bottom-color: #4f46e5;
+}
+
+.border-gray-300 {
+    border-bottom-color: #d1d5db;
+}
+
+.bg-gray-200 {
+    background-color: #e5e7eb;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.hover\:bg-gray-200:hover,
+.focus\:outline-none:focus,
+.focus\:bg-gray-200:focus {
+    background-color: #e5e7eb;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    outline: none;
+}

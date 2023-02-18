@@ -19,7 +19,7 @@ export  function gridOrderText(props) {
   return <div>
     {
       item.map((item) =>
-        <p key={item.name}>
+        <p key={item.name} style={{margin:0}}>
           {item.name}
           &ensp;
           x{item.quantity}
@@ -49,7 +49,7 @@ export default function gridOrderStatus(props){
   return <button
     type="button"
     style={{ background: statusBg}}
-    className="text-white py-1 px-1 rounded-2xl text-md"
+    className="text-white py-1 px-1 border-0 rounded-pill"
     
   >
     
@@ -79,7 +79,7 @@ export const ordersGrid = [
   {
     field:"detail_order",
     headerText: 'Item',
-    width: '190',
+    width: '200',
     template: gridOrderText,
     textAlign: 'Center',
   },
@@ -99,7 +99,7 @@ export const ordersGrid = [
     
     textAlign: 'Center',
     
-    width: '110',
+    width: '120',
   },
   {
     field: 'shipping_address',
