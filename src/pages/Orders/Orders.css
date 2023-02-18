@@ -21,7 +21,7 @@
     border-right: none;
 }
 
-.border-indigo-500 {    
+.border-indigo-500 {
     border-bottom-color: #4f46e5;
 }
 
@@ -46,3 +46,6 @@
     border-right: none;
     outline: none;
 }
+.custom-btn {
+   display: unset;
+  }
