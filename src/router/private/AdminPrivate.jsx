@@ -1,9 +1,11 @@
+import AdminDataPage from "../../components/AdminData/AdminData";
 import CartPage from "../../components/Cart/Cart";
 import HistoryPage from "../../components/History/HistoryPage";
 import HomePage from "../../components/Home/HomePage";
 import NotFound from "../../components/NotFound";
+import ProductAdminPage from "../../components/Product/ProductAdminPage";
 import ProductPage from "../../components/Product/ProductPage";
-import ProfilePage from "../../components/Profile";
+import VoucherPage from "../../components/Voucher/VoucherPage";
 import BaseLayout from "../../layout/Base";
 
 export const AdminPrivateRouter = [
@@ -13,23 +15,18 @@ export const AdminPrivateRouter = [
     layout: BaseLayout,
   },
   {
-    path: "/profile",
-    element: ProfilePage,
+    path: "/data",
+    element: AdminDataPage,
     layout: BaseLayout,
   },
   {
-    path: "/product",
-    element: ProductPage,
+    path: "/products",
+    element: ProductAdminPage,
     layout: BaseLayout,
   },
   {
-    path: "/cart",
-    element: CartPage,
-    layout: BaseLayout,
-  },
-  {
-    path: "/history",
-    element: HistoryPage,
+    path: "/vouchers",
+    element: VoucherPage,
     layout: BaseLayout,
   },
   {

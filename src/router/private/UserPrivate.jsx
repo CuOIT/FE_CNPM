@@ -1,5 +1,5 @@
 import CartPage from "../../components/Cart/Cart";
-import SalePage from "../../components/Sale/SalePage";
+import VoucherPage from "../../components/Voucher/VoucherPage";
 import HistoryPage from "../../components/History/HistoryPage";
 import HomePage from "../../components/Home/HomePage";
 import NotFound from "../../components/NotFound";
@@ -30,7 +30,7 @@ export const UserPrivateRouter = [
   },
   {
     path: "/sale",
-    element: SalePage,
+    element: VoucherPage,
     layout: BaseLayout,
   },
   {

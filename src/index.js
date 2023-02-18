@@ -6,6 +6,7 @@ import App from "./App";
 import thunk from "redux-thunk";
 import { applyMiddleware, compose, legacy_createStore } from "redux";
 import rootReducer from "./redux/reducer";
+import { MantineProvider } from "@mantine/core";
 
 const middlewares = [thunk];
 const store = legacy_createStore(
@@ -16,9 +17,11 @@ const store = legacy_createStore(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MantineProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MantineProvider>
   </>
 );
 

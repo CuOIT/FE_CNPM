@@ -1,10 +1,12 @@
 .wrapper {
   background: white;
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-start; */
   margin: 20px;
   padding: 20px;
+  width: 95vw;
+  height: 90vh;
 }
 .productItem {
   width: 300px;

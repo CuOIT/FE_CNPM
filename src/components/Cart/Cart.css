@@ -12,9 +12,15 @@
 }
 .setNumItem {
   float: right;
+  display: inline;
+}
+.setNumItem > *{
+
+  display: inline;
 }
 .deleteItem {
   margin-left: 10px;
+  display: inline-block;
 }
 .preTotal {
   margin-right: 10px;
@@ -67,4 +73,17 @@ h6 {
 
 .choice-dropdown__list li:hover {
   background-color: lightgray;
+}
+.btnSetNumItem {
+  place-items: center;
+  font-size: 15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.numItem {
+  display: inline-block;
+  place-items: center;
+  width: 20px;
 }

@@ -5,12 +5,18 @@ import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
 import { updateUserDataRedux } from "../../redux/action/auth";
 import * as Types from "./../../redux/constants";
+import toast, { Toaster } from 'react-hot-toast';
 // import { fetchInstant } from "@/config";
 // import { METHOD } from "@/constants";
 import "./Auth.css";
+
+
+const enotify = (props) => toast.error(props);
+const notify =  (props) => toast.success(props);
+
 const LoginForm = () => {
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     const loginText = document.querySelector(".title.login");
     const loginForm = document.querySelector("form.login");
@@ -20,6 +26,7 @@ const LoginForm = () => {
     signupBtn.onclick = () => {
       loginForm.style.marginLeft = "-50%";
       loginText.style.marginLeft = "-50%";
+     
     };
     loginBtn.onclick = () => {
       loginForm.style.marginLeft = "0%";
@@ -38,11 +45,11 @@ const LoginForm = () => {
       user_password: password.value,
       // role,
     };
-    fetchInstant("/api/login", METHOD.POST, payload).then((res) => {
-      console.log(res);
-      if (res.code === 0 && res.message === "OK") {
-        dispatch(updateUserDataRedux(res.user));
-      }
+    fetchInstant("/api/login", METHOD.POST, payload).then((res) => {          
+      if (res.code===0){
+        notify("Login sucessfully");
+        window.setTimeout(function(){dispatch(updateUserDataRedux(res.user))},1500)
+      } else (enotify(res.message) )                        
     });
   };
 
@@ -60,11 +67,15 @@ const LoginForm = () => {
       birthday: birthday.value,
     };
     fetchInstant("/api/create-new-user", METHOD.POST, payload).then((res) => {
-      console.log(res);
+      console.log(res.message);
+      if (res.code===0){
+        notify(res.message);
+      } else (enotify(res.message) )    
     });
   };
   return (
-    <div className="login-dad">
+    
+    <div className="login-dad"><Toaster />
       <div className="wrapper">
         <div className="title-text">
           <div className="title login">Login Form</div>
@@ -72,7 +83,7 @@ const LoginForm = () => {
         </div>
         <div className="form-container">
           <div className="slide-controls">
-            <input type="radio" name="slide" checked />
+            <input type="radio" name="slide" />
             <input type="radio" name="slide" />
             <label htmlFor="login" className="slide login">
               Login
@@ -83,7 +94,7 @@ const LoginForm = () => {
             <div className="slider-tab"></div>
           </div>
           <div className="form-inner">
-            <form className="login" onSubmit={handleLogin}>
+            <form className="login" onSubmit={handleLogin} >
               <div className="field">
                 <input
                   name="phone"
@@ -151,6 +162,9 @@ const LoginForm = () => {
                 <div className="btn-layer"></div>
                 <input type="submit" value="Signup" />
               </div>
+              <div>
+      
+    </div>
             </form>
           </div>
         </div>

@@ -32,3 +32,10 @@ export const updateCartById = (item) => {
     payload: item,
   };
 };
+
+export const orderItems = (orderData) => {
+  return {
+    type: Types.ORDER,
+    payload: orderData,
+  };
+};

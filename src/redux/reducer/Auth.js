@@ -51,6 +51,14 @@ export const AuthReducer = (state = initialState, action) => {
       return cloneState;
     }
 
+    case Types.ORDER: {
+      console.log("HI");
+      let cloneState = JSON.parse(JSON.stringify(state));
+      cloneState.cart = [];
+      localStorage.setItem("user", JSON.stringify(cloneState));
+      console.log(cloneState);
+      return cloneState;
+    }
     case Types.LOG_OUT: {
       console.log("LOGOUT");
       localStorage.clear();

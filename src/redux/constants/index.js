@@ -7,6 +7,7 @@ export const RECOVERY = "RECOVERY";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ITEM_CART = "DELETE_ITEM_CART";
 export const UPDATE_ITEM_CART = "UPDATE_ITEM_CART";
+export const ORDER = "ORDER";
 
 // ---------------Type---------------
 
