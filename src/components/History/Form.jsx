@@ -18,7 +18,7 @@ function Form(props) {
                 {props.body}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant='dark' onClick={props.onHide}>Close</Button>
+                <Button variant='info' onClick={props.onHide}>Close</Button>
             </Modal.Footer>
         </Modal>
     );
