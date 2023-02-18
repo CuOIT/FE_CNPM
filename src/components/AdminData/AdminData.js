@@ -83,7 +83,7 @@ const AdminDataPage = () => {
                         <h2 className="justname">{dataUserRedux.user_name}</h2>
                     </div>
                     <div className="optionofhistory">
-                        <div>
+                        <div className="firstRow">
                             <button onClick={() => setShowCheck1(true)} className="thongkeelement main">Doanh thu cửa hàng</button>
                             <Form
                                 title={'Doanh thu cửa hàng'}
@@ -145,7 +145,7 @@ const AdminDataPage = () => {
                                 onHide={() => setShowCheck2(false)}
                             />
                         </div>
-                        <div>
+                        <div className="secondRow">
                             <button onClick={() => setShowCheck3(true)} className="thongkeelement">Thông tin sản phẩm</button>
                             <Form
                                 title={'Thông tin sản phẩm'}

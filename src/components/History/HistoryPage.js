@@ -83,7 +83,7 @@ const HistoryPage = () => {
             <h2 className="justname">{dataUserRedux.user_name}</h2>
           </div>
           <div className="optionofhistory">
-            <div>
+            <div className="firstRow">
               <button onClick={() => setShowCheck1(true)} className="thongkeelement">Lịch sử mua hàng</button>
               <Form
                 title={'Lịch sử mua hàng'}
@@ -155,12 +155,12 @@ const HistoryPage = () => {
                 onHide={() => setShowCheck2(false)}
               />
             </div>
-            <div>
+            <div className="secondRow">
               <button onClick={() => setShowCheck3(true)} className="thongkeelement">Tổng số tiền đã dùng</button>
               <Form
                 title={'Tổng số tiền đã dùng'}
                 body={<div>
-                  <h3 align='center'>Bạn đã tiêu {totalMoney} VND rồi đó! &#128525;</h3>
+                  <h3 align='center'>Bạn đã dùng {totalMoney} VND rồi đó! &#128525;</h3>
                   <img></img>
                 </div>}
                 show={showCheck3}
