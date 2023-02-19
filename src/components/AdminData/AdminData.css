@@ -49,6 +49,14 @@
     align-items: center;
 }
 
+.firstRow {
+    display: inline;
+}
+
+.secondRow {
+    display: inline;
+}
+
 .thongkeelement {
     margin: 40px;
     width: 35%;

@@ -48,7 +48,6 @@ code {
 }
 /* // button */
 button {
-  display: inherit;
   outline: inherit;
   border: inherit;
   line-height: inherit;
