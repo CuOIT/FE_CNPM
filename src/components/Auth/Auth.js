@@ -49,6 +49,9 @@ const LoginForm = () => {
       if (res.code===0){
         notify("Login sucessfully");
         window.setTimeout(function(){dispatch(updateUserDataRedux(res.user))},1500)
+        fetchInstant("/api/get-all-items", METHOD.GET).then((res) => {
+          localStorage.setItem("allBook", JSON.stringify(res.items));
+        });
       } else (enotify(res.message) )                        
     });
   };
