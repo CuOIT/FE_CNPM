@@ -4,6 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useDataAuthRedux } from "../../redux/selector";
 import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const HistoryPage = () => {
 
@@ -90,12 +95,7 @@ const HistoryPage = () => {
                 body={<div>
                   <table className="table">
                     <tbody>
-                      <tr>
-                        <th>Order ID</th>
-                        <th>Total Price</th>
-                        <th>Payment</th>
-                        <th>Shipping Address</th>
-                      </tr>
+
                       {listOrder.map((order, index) => {
                         if (order.payment === 1) {
                           status = "Cash";
@@ -107,12 +107,47 @@ const HistoryPage = () => {
                           status = "Momo";
                         }
                         return (
-                          <tr key={index}>
-                            <th>{order.id}</th>
-                            <th>{order.total_price}</th>
-                            <th>{status}</th>
-                            <th>{order.shipping_address}</th>
-                          </tr>
+                          <Accordion>
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1a-content"
+                            >
+                              <Typography>
+                                <table className="table">
+                                  <tr>
+                                    <th>ID: {order.id}</th>
+                                    <th>Price: {order.total_price}</th>
+                                    <th>Payment: {status}</th>
+                                    <th>Address: {order.shipping_address}</th>
+                                  </tr>
+                                </table>
+                              </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              <Typography>
+                                {listOrderDetail.map((orderdetail, index) => {
+                                  return (
+
+                                    listItem.map((item, index) => {
+
+                                      if (item.id === orderdetail.item_id && orderdetail.order_id === order.id) {
+                                        return (
+                                          <table className="table">
+                                            <tr>
+                                              <th>{item.name}</th>
+                                              <th>Price: {item.price}</th>
+                                              <th>Quantity: {orderdetail.quantity}</th>
+                                            </tr>
+                                          </table>
+                                        )
+                                      }
+                                    })
+                                  )
+                                })}
+                              </Typography>
+                            </AccordionDetails>
+                          </Accordion>
+
                         )
                       })}
                     </tbody>
@@ -161,7 +196,6 @@ const HistoryPage = () => {
                 title={'Tổng số tiền đã dùng'}
                 body={<div>
                   <h3 align='center'>Bạn đã dùng {totalMoney} VND rồi đó! &#128525;</h3>
-                  <img></img>
                 </div>}
                 show={showCheck3}
                 onHide={() => setShowCheck3(false)}
