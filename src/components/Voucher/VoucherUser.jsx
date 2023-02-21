@@ -32,8 +32,10 @@ const VoucherUser = () => {
   return (
     <div>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
-        <div className="w3-container w3-green w3-padding-64 w3-center">
-            <h1 className="w3-cursive">Kho Voucher</h1>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+        <div className="w3-container w3-green w3-padding-32 w3-center">
+            <h1 className="w3-cursive">Kho Voucher</h1><button class="w3-button w3-right w3-white w3-round-xlarge">Thoát <i class="fa fa-sign-out"></i></button>
         </div>
 
         <div class="w3-container w3-padding-64 w3-xxlarge">

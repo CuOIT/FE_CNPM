@@ -1,6 +1,6 @@
 // xem, tim kiem
 
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchInstant } from "../../config";
@@ -10,6 +10,8 @@ import * as Types from "./../../redux/constants";
 import "./style.css";
 
 const VoucherAdmin = () => {
+    const [showOut, setShowOut] = useState(false);
+
     function myFunction() {
         // var input, filter, table, tr, td, i;
         // input = document.getElementById("myInput");
@@ -34,8 +36,14 @@ const VoucherAdmin = () => {
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
-        <div className="w3-container w3-green w3-padding-64 w3-center">
+        <div className="w3-container w3-green w3-padding-32 w3-center">
             <h1 className="w3-cursive">Kho Voucher</h1>
+            <button onclick={() => setShowOut(true)} class="w3-button w3-right w3-white w3-round-xlarge">Thoát <i class="fa fa-sign-out"></i></button>
+                <form title="Bạn chắc chắn muốn thoát?" 
+                        show={showOut}
+                        onHide={() => setShowOut(false)}>
+                </form>
+            <button class="w3-button w3-right w3-white w3-round-xlarge">Thêm +</button>
         </div>
 
         <div class="w3-container w3-padding-64 w3-xxlarge">
@@ -47,8 +55,9 @@ const VoucherAdmin = () => {
             <div class="w3-content w3-padding-64">
                 <div class="w3-container w3-white w3-round w3-padding">
                     <h1>
+                        <button  class="w3-col s1 w3-button w3-right w3-green w3-round-xxlarge"><i class="fa fa-trash"></i></button>
+                        <button  class="w3-col s1 w3-button w3-right w3-green w3-round-xxlarge"><i class="fa fa-edit"></i></button>
                         <b>Giảm 5%</b>
-                        <button class="w3-button w3-right w3-green w3-round-xlarge fa fa-edit" ></button>
                         <p>Đơn tối thiểu 40k</p>
                     </h1>
                     <hr />
