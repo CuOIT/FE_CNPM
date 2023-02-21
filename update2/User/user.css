@@ -1,0 +1,50 @@
+
+
+html,
+body,
+.intro {
+  height: 100%;
+ 
+}
+
+body{
+    border-radius: 15px;
+}
+.container{}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  
+}
+tbody td {
+  font-weight: 500;
+  color: #999999;
+}
+#head {
+    background-color: #e4e1d9;
+}
+
+tr:hover{
+    background-color: #e4e1d9;
+    cursor: pointer;
+    
+}
+
+table{
+    border-radius: 15px;  
+}
+
+.justify-content-center {
+    margin-top: 30px;
+}
+
+#delete{
+    background-color:rgb(216, 178, 178);
+    color:#fff
+}
+#delete:hover{
+    background-color:rgb(232, 141, 141);
+}
