@@ -50,7 +50,7 @@ const UserListPage = () => {
          
 
 
-           
+         console.log(res)
          console.log(list[i].phone);
          console.log(list[i].user_name);
           var row = `<tr id="trid">
