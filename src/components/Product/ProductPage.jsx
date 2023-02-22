@@ -25,6 +25,7 @@ const ProductPage = () => {
       }
     });
   };
+  // console.log(listProduct)
   const handleAddToCart = (item) => {
     notify("Added "+item.name);
     dispatch(addToCart(item));
@@ -90,7 +91,7 @@ const ProductPage = () => {
         {listProduct.map((item, index) => (
           <div key={index}>
             <div className={style.productItem}>
-              <img src={item.image_link} alt="product-img" />
+              <img src={`http://localhost:8080/${item.image_link}`} alt="product-img" />
               <h3 className={`${style.name} line-clamp-2`}>{item.name}</h3>
               {/* <p>{item.description}</p> */}
               <p>Giá: {formatCurrency(item.price)}</p>

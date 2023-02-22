@@ -211,6 +211,7 @@ const ProductAdminPage = () => {
                       METHOD.POST,
                       formCreate
                     ).then((res) => {
+                      console.log(res)
                       if (res.code === 0) {
                         //process.env.REACT_APP_BASE_URL
                         fetch(
