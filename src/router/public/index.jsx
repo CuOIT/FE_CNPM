@@ -10,16 +10,16 @@ export const PublicRouter = [
     path: "/login",
     element: LoginForm,
   },
-  {
-    path: "/voucher/admin",
-    element: VoucherAdmin,
-  },
-  {
-    path: "/admindata",
-    element: AdminDataPage,
-  },
-  {
-    path: "/voucher/user",
-    element: VoucherUser,
-  },
+  // {
+  //   path: "/voucher/admin",
+  //   element: VoucherAdmin,
+  // },
+  // {
+  //   path: "/admindata",
+  //   element: AdminDataPage,
+  // },
+  // {
+  //   path: "/voucher/user",
+  //   element: VoucherUser,
+  // },
 ];

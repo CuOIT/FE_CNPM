@@ -2,54 +2,43 @@
 
 import React, {  useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
-import { updateUserDataRedux } from "../../redux/action/auth";
-import * as Types from "./../../redux/constants";
 import {data} from "./data.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import ".style.module.css";
-
 
 const VoucherAdmin = () => {
     // console.log(data);
     const [dataSearch, setDataSearch] = useState(data)
-
     const [voucherdata, setvoucherdata] = useState([]);
     const [search, setSearch] = useState('');
 
-    const [list, setList] = React.useState([data])
-    const remove = (id) => {
-        dataSearch.splice(id, 1)
-        setDataSearch(dataSearch)
-        
-    };
+
     console.log(dataSearch)
-    const [filterFn, setFilterFn] = useState({ fn: items => { return items; } });
-    const handleSearch = (e) => {
-        // console.log(e.target.voucher_code);
-        let target = e.target.value;
-        setFilterFn({
-            fn: items => {
-                if (target === "")
-                    return items;
-                else
-                    return items.filter(data => data.voucher_code.toLowerCase().includes(target))
-            }
-        })
-    }
-    const getAllVoucher = () => {
-        fetchInstant("/api/get-all-vouchers", METHOD.GET).then((res) => {
-          console.log(res.vouchers);
-          if (res.code === 0 && res.message === "OK") {
-            setvoucherdata(res.vouchers);
-          }
-        });
-      };
-    useEffect(()=>{
-        getAllVoucher();
-    },[]);
+    // const [filterFn, setFilterFn] = useState({ fn: items => { return items; } });
+    // const handleSearch = (e) => {
+    //     // console.log(e.target.voucher_code);
+    //     let target = e.target.value;
+    //     setFilterFn({
+    //         fn: items => {
+    //             if (target === "")
+    //                 return items;
+    //             else
+    //                 return items.filter(data => data.voucher_code.toLowerCase().includes(target))
+    //         }
+    //     })
+    // }
+    // const getAllVoucher = () => {
+    //     fetchInstant("/api/get-all-vouchers", METHOD.GET).then((res) => {
+    //       console.log(res.vouchers);
+    //       if (res.code === 0 && res.message === "OK") {
+    //         setvoucherdata(res.vouchers);
+    //       }
+    //     });
+    //   };
+    // useEffect(()=>{
+    //     getAllVoucher();
+    // },[]);
 
     
     return (
@@ -94,12 +83,10 @@ const VoucherAdmin = () => {
                             <th>value</th>
                             <th>amount</th>
                             <th>voucher_code</th>
-                            
-                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        { data
+                        {data
                             .filter((item) => {
                                 return search?.toLowerCase() === ''
                                     ? item
@@ -111,10 +98,7 @@ const VoucherAdmin = () => {
                             <td>{voucherdata.value}</td>
                             <td>{voucherdata.amount}</td>
                             <td>{voucherdata.voucher_code}</td>
-                            <td>
-                                <button class="w3-button w3-green w3-round-xxlarge">Sửa</button>
-                                <button onClick = {() => remove(voucherdata.id)} class="w3-button w3-green w3-round-xxlarge">Xoá</button>
-                            </td>
+                            
                         </tr>
                         ))}
                         </tbody>
