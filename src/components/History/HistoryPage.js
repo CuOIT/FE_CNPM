@@ -79,6 +79,9 @@ const HistoryPage = () => {
     totalMoney += order.total_price;
   });
 
+  var number = new Array();
+  var numberindex = -1;
+
   return (
     <>
       <div className="statistic">
@@ -166,6 +169,7 @@ const HistoryPage = () => {
                           <th>Day used</th>
                         </tr>
                         {listOrder.map((order, index) => {
+                          index++;
                           return listVoucher.map((voucher, index) => {
                             const date = new Date(order.createdAt);
                             if (order.voucher_id === voucher.id) {
@@ -223,30 +227,28 @@ const HistoryPage = () => {
                         <tr>
                           <th></th>
                           <th>Item</th>
+                          <th>Quantity</th>
                         </tr>
                         {listItem.map((item, index) => {
-                          return listOrder.map((order, index) => {
-                            return listOrderDetail.map((orderdetail, index) => {
+                          numberindex++;
+                          number[numberindex] = 0;
+                          listOrder.map((order, index) => {
+                            listOrderDetail.map((orderdetail, index) => {
                               if (
                                 item.id === orderdetail.item_id &&
                                 orderdetail.order_id === order.id
                               ) {
-                                return (
-                                  <tr>
-                                    <th>
-                                      <img
-                                        src={item.image_link}
-                                        alt="product-img"
-                                        width="100"
-                                        height="100"
-                                      ></img>
-                                    </th>
-                                    <th>{item.name}</th>
-                                  </tr>
-                                );
+                                number[numberindex]++;
                               }
                             });
                           });
+                          return (
+                            <tr>
+                              <th>Link anh m them lai vao day giup t nhe Cuong</th>
+                              <th>{item.name}</th>
+                              <th>{number[numberindex]}</th>
+                            </tr>
+                          );
                         })}
                       </tbody>
                     </table>
