@@ -7,65 +7,111 @@ import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
 import { updateUserDataRedux } from "../../redux/action/auth";
 import * as Types from "./../../redux/constants";
-import "./style.css";
+import {data} from "./data.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import ".style.module.css";
+
 
 const VoucherAdmin = () => {
-    const [showOut, setShowOut] = useState(false);
+    console.log(data);
 
-    function myFunction() {
-        // var input, filter, table, tr, td, i;
-        // input = document.getElementById("myInput");
-        // filter = input.value.toUpperCase();
-        // table = document.getElementById("myTable");
-        // tr = table.getElementsByTagName("tr");
-        // for (i = 0; i < tr.length; i++) {
-        //   td = tr[i].getElementsByTagName("td")[0];
-        //   if (td) {
-        //     txtValue = td.textContent || td.innerText;
-        //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        //       tr[i].style.display = "";
-        //     } else {
-        //       tr[i].style.display = "none";
-        //     }
-        //   }
-        // }
-      }
+    const [voucherdata, setvoucherdata] = useState([]);
+    const [search, setSearch] = useState('');
+    console.log(search);
 
-  return (
-    <div>
+    const [list, setList] = React.useState([data])
+    const remove = (id) => {
+        const newlist = list.filter((l) => l.id != id);
+        setList(newlist);
+    };
+    const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
+    const handleSearch = e => {
+        let target = e.target;
+        setFilterFn({
+            fn: items => {
+                if (target.value == "")
+                    return items;
+                else
+                    return items.filter(x => x.voucher_code.toLowerCase().includes(target.value))
+            }
+        })
+    }
+    const getAllVoucher = () => {
+        fetchInstant("/api/get-all-vouchers", METHOD.GET).then((res) => {
+          console.log(res.vouchers);
+          if (res.code === 0 && res.message === "OK") {
+            setvoucherdata(res.vouchers);
+          }
+        });
+      };
+    useEffect(()=>{
+        getAllVoucher();
+    },[]);
+
+    
+    return (
+    <div
+        style={{
+            backgroundColor: "#E8E8E8",
+            width: "90%",
+            minHeight: "600px",
+            margin: "100px auto",
+            borderRadius: "10px",
+            padding: "0px 2px",
+        }}
+    >
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-
-        <div className="w3-container w3-green w3-padding-32 w3-center">
-            <h1 className="w3-cursive">Kho Voucher</h1>
-            <button onclick={() => setShowOut(true)} class="w3-button w3-right w3-white w3-round-xlarge">Thoát <i class="fa fa-sign-out"></i></button>
-                <form title="Bạn chắc chắn muốn thoát?" 
-                        show={showOut}
-                        onHide={() => setShowOut(false)}>
-                </form>
-            <button class="w3-button w3-right w3-white w3-round-xlarge">Thêm +</button>
-        </div>
+        <button
+            style={{
+                width: "100px",
+                height: "42px",
+                borderRadius: "5px",
+                marginTop: "30px",
+                marginLeft: "50px",
+            }}
+            type="button"
+            class="btn btn-primary w3-green"
+            data-toggle="modal"
+            data-target="#exampleModal"
+        >Tạo mới
+        </button>
 
         <div class="w3-container w3-padding-64 w3-xxlarge">
-            <input class="w3-input w3-content w3-center w3-pale-green w3-round-xxlarge" 
-                type="text" 
-                placeholder="Tìm kiếm voucher"
-                id="myInput" 
-                onkeyup="myFunction()" />
-            <div class="w3-content w3-padding-64">
-                <div class="w3-container w3-white w3-round w3-padding">
-                    <h1>
-                        <button  class="w3-col s1 w3-button w3-right w3-green w3-round-xxlarge"><i class="fa fa-trash"></i></button>
-                        <button  class="w3-col s1 w3-button w3-right w3-green w3-round-xxlarge"><i class="fa fa-edit"></i></button>
-                        <b>Giảm 5%</b>
-                        <p>Đơn tối thiểu 40k</p>
-                    </h1>
-                    <hr />
-                    <h1>
-                        <b>Giảm 15%</b>
-                        <p>Đơn trên 200k</p>
-                    </h1>
+            <input class="w3-input w3-content w3-center w3-pale-green w3-round-xxlarge w3-large" 
+                    placeholder="Tìm kiếm voucher"
+                    onChange={handleSearch} />
+            <div class="w3-content w3-padding">
+                <div>
+                    {/* show voucher */}
+                    <table class="w3-table-all w3-large table-bordered">
+                        <thead>
+                        <tr class="w3-green">
+                            <th>expired_date</th>
+                            <th>value</th>
+                            <th>amount</th>
+                            <th>voucher_id</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {data.map((voucherdata, index)=>(
+                            
+                        <tr key={index}>
+                            <td>{voucherdata.expried_date}</td>
+                            <td>{voucherdata.value}</td>
+                            <td>{voucherdata.amount}</td>
+                            <td>{voucherdata.voucher_code}</td>
+                            <td>
+                                <button class="w3-button w3-green w3-round-xxlarge">Sửa</button>
+                                <button onClick = {() => remove(voucherdata.id)} class="w3-button w3-green w3-round-xxlarge">Xoá</button>
+                            </td>
+                        </tr>
+))}
+                        </tbody>
 
+                    </table>
+                        
                 </div>
                 
             </div>
