@@ -215,12 +215,6 @@ export const data=[{
     "amount": 91,
     "voucher_code": "SSBR"
   }, {
-    "id": 37,
-    "expried_date": "6/26/2022",
-    "value": 958,
-    "amount": 16,
-    "voucher_code": null
-  }, {
     "id": 38,
     "expried_date": "1/3/2023",
     "value": 101,
@@ -286,13 +280,7 @@ export const data=[{
     "value": 28,
     "amount": 95,
     "voucher_code": "CYCT"
-  }, {
-    "id": 49,
-    "expried_date": "7/17/2022",
-    "value": 576,
-    "amount": 15,
-    "voucher_code": null
-  }, {
+  },  {
     "id": 50,
     "expried_date": "12/23/2022",
     "value": 103,
@@ -443,12 +431,6 @@ export const data=[{
     "amount": 11,
     "voucher_code": "GOTB"
   }, {
-    "id": 75,
-    "expried_date": "4/12/2022",
-    "value": 633,
-    "amount": 25,
-    "voucher_code": null
-  }, {
     "id": 76,
     "expried_date": "4/23/2022",
     "value": 819,
@@ -508,12 +490,6 @@ export const data=[{
     "value": 977,
     "amount": 86,
     "voucher_code": "CYQH"
-  }, {
-    "id": 86,
-    "expried_date": "8/24/2022",
-    "value": 386,
-    "amount": 100,
-    "voucher_code": null
   }, {
     "id": 87,
     "expried_date": "4/28/2022",

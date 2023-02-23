@@ -13,26 +13,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const VoucherAdmin = () => {
-    console.log(data);
+    // console.log(data);
+    const [dataSearch, setDataSearch] = useState(data)
 
     const [voucherdata, setvoucherdata] = useState([]);
     const [search, setSearch] = useState('');
-    console.log(search);
 
     const [list, setList] = React.useState([data])
     const remove = (id) => {
-        const newlist = list.filter((l) => l.id != id);
-        setList(newlist);
+        dataSearch.splice(id, 1)
+        setDataSearch(dataSearch)
+        
     };
-    const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-    const handleSearch = e => {
-        let target = e.target;
+    console.log(dataSearch)
+    const [filterFn, setFilterFn] = useState({ fn: items => { return items; } });
+    const handleSearch = (e) => {
+        // console.log(e.target.voucher_code);
+        let target = e.target.value;
         setFilterFn({
             fn: items => {
-                if (target.value == "")
+                if (target === "")
                     return items;
                 else
-                    return items.filter(x => x.voucher_code.toLowerCase().includes(target.value))
+                    return items.filter(data => data.voucher_code.toLowerCase().includes(target))
             }
         })
     }
@@ -79,8 +82,8 @@ const VoucherAdmin = () => {
 
         <div class="w3-container w3-padding-64 w3-xxlarge">
             <input class="w3-input w3-content w3-center w3-pale-green w3-round-xxlarge w3-large" 
-                    placeholder="Tìm kiếm voucher"
-                    onChange={handleSearch} />
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder='Search voucher code'/>
             <div class="w3-content w3-padding">
                 <div>
                     {/* show voucher */}
@@ -90,13 +93,19 @@ const VoucherAdmin = () => {
                             <th>expired_date</th>
                             <th>value</th>
                             <th>amount</th>
-                            <th>voucher_id</th>
+                            <th>voucher_code</th>
+                            
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                            {data.map((voucherdata, index)=>(
-                            
+                        { data
+                            .filter((item) => {
+                                return search?.toLowerCase() === ''
+                                    ? item
+                                    : item.voucher_code.toLowerCase().includes(search.toLowerCase());
+                        })
+                         .map((voucherdata, index) => (   
                         <tr key={index}>
                             <td>{voucherdata.expried_date}</td>
                             <td>{voucherdata.value}</td>
@@ -107,7 +116,7 @@ const VoucherAdmin = () => {
                                 <button onClick = {() => remove(voucherdata.id)} class="w3-button w3-green w3-round-xxlarge">Xoá</button>
                             </td>
                         </tr>
-))}
+                        ))}
                         </tbody>
 
                     </table>
