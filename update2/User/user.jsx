@@ -8,8 +8,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 
 const UserListPage = () => {  
-    const enotify = (props) => toast.error(props);
-    const notify = (props) => toast.success(props);
     const [handleDelete, setHandleDelete] = useState({ status: 0 });
     useEffect(() => {
 
@@ -104,7 +102,7 @@ const UserListPage = () => {
             </th>
           </tr>
         </thead>
-        <tbody class="table-group-divider">{renderItem()}</tbody>
+        <tbody class="table-group-divider">{renderUser()}</tbody>
       </table>
       </div>
   );
