@@ -8,7 +8,7 @@ import { METHOD } from "../../constants";
 const AdminDataPage = () => {
 
     const dataUserRedux = useDataAuthRedux();
-    // console.log(dataUserRedux);
+    // console.log(dataUserRedux)
 
     const [listVoucher, setListVoucher] = useState([]);
     const [listItem, setListItem] = useState([]);

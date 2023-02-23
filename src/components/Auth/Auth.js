@@ -16,6 +16,10 @@ const notify =  (props) => toast.success(props);
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [activeTab, setActiveTab] = useState("login");
+  const handleTabChange = (event) => {
+    setActiveTab(event.target.id);
+  };
   
   useEffect(() => {
     const loginText = document.querySelector(".title.login");
@@ -57,11 +61,10 @@ const LoginForm = () => {
     event.preventDefault();
     const { phone, password, confirmPassword, name, email, birthday } =
       event.target;
-    console.log(phone, password, confirmPassword, name, email, birthday);
     const payload = {
       phone: phone.value,
       user_password: password.value,
-      //confirmPassword: confirmPassword.value,
+      role: 3,
       user_name: name.value,
       email: email.value,
       birthday: birthday.value,
@@ -83,8 +86,8 @@ const LoginForm = () => {
         </div>
         <div className="form-container">
           <div className="slide-controls">
-            <input type="radio" name="slide" />
-            <input type="radio" name="slide" />
+          <input type="radio" id="login" name="slide" checked={activeTab === "login"}  onChange={handleTabChange}/>
+            <input type="radio" id="signup" name="slide" checked={activeTab === "signup"}  onChange={handleTabChange}/>
             <label htmlFor="login" className="slide login">
               Login
             </label>
@@ -150,6 +153,12 @@ const LoginForm = () => {
               <div className="field">
                 <input id="email" type="text" placeholder="Email" required />
               </div>
+              <div className="field"> 
+               
+               <form>
+                
+               </form>
+                </div>             
               <div className="field">
                 <input
                   id="birthday"

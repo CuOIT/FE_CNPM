@@ -6,7 +6,7 @@
   margin: 20px;
   padding: 20px;
   width: 95vw;
-  height: 90vh;
+  min-height: 90vh;
 }
 .productItem {
   width: 300px;
@@ -14,14 +14,14 @@
   padding: 30px;
   box-sizing: border-box;
   border-radius: 20px;
-  margin-right: 20px;
+  margin: 20px 20px 0 0;
   transition: 0.3s;
   background-color: aliceblue;
   text-align: center;
 }
 .productItem img {
-  width: 100%;
-  height: auto;
+  width: 240px;
+  height: 240px;
 }
 .name {
   margin-top: 12px;

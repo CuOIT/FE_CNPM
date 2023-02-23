@@ -5,7 +5,8 @@ import HomePage from "../../components/Home/HomePage";
 import NotFound from "../../components/NotFound";
 import ProductAdminPage from "../../components/Product/ProductAdminPage";
 import ProductPage from "../../components/Product/ProductPage";
-import VoucherPage from "../../components/Voucher/VoucherPage";
+import VoucherAdminPage from "../../components/Voucher/VoucherAdminPage";
+import VoucherUserPage from "../../components/Voucher/VoucherUserPage";
 import BaseLayout from "../../layout/Base";
 
 export const AdminPrivateRouter = [
@@ -26,7 +27,7 @@ export const AdminPrivateRouter = [
   },
   {
     path: "/vouchers",
-    element: VoucherPage,
+    element: VoucherAdminPage,
     layout: BaseLayout,
   },
   {

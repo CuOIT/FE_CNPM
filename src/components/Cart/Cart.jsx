@@ -119,6 +119,11 @@ const CartPage = () => {
             <div>
               {cart.map((item, index) => (
                 <div key={index} className="cartItem">
+                  <img
+                    src={`${process.env.REACT_APP_BASE_URL}/${item.image_link}`}
+                    alt="product-img"
+                    className="img-cart"
+                  />
                   <p>{item.name}</p>
                   <div className="setNumItem">
                     <button
@@ -134,12 +139,12 @@ const CartPage = () => {
                     >
                       +
                     </button>
-                    <button className="btn btn-danger deleteItem "
+                    <button
+                      className="btn btn-danger deleteItem "
                       onClick={() => handleDeleteCart(item)}
                     >
                       <i class="fa fa-trash"></i>
                     </button>
-
                   </div>
                 </div>
               ))}

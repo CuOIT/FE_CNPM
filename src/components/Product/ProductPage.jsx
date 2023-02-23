@@ -8,7 +8,6 @@ import { addToCart } from "../../redux/action/auth";
 import { Select } from "@mantine/core";
 import toast, { Toaster } from "react-hot-toast";
 
-
 const ProductPage = () => {
   const enotify = (props) => toast.error(props);
   const notify = (props) => toast.success(props);
@@ -26,7 +25,7 @@ const ProductPage = () => {
     });
   };
   const handleAddToCart = (item) => {
-    notify("Added "+item.name);
+    notify("Added " + item.name);
     dispatch(addToCart(item));
   };
   useEffect(() => getAllPoduct(), []);
@@ -58,7 +57,7 @@ const ProductPage = () => {
   };
   return (
     <div className={style.wrapper}>
-            <Toaster />
+      <Toaster />
       <div style={{ display: "flex" }}>
         <Select
           className="mr-4"
@@ -90,7 +89,11 @@ const ProductPage = () => {
         {listProduct.map((item, index) => (
           <div key={index}>
             <div className={style.productItem}>
-              <img src={item.image_link} alt="product-img" />
+              <img
+                className={style.imgProduct}
+                src={`${process.env.REACT_APP_BASE_URL}/${item.image_link}`}
+                alt="product-img"
+              />
               <h3 className={`${style.name} line-clamp-2`}>{item.name}</h3>
               {/* <p>{item.description}</p> */}
               <p>Giá: {formatCurrency(item.price)}</p>

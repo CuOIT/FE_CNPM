@@ -73,6 +73,7 @@ const HistoryPage = () => {
 
   var totalMoney = 0;
   var status = "";
+  var orderstatus = "";
 
   listOrder.map((order) => {
     totalMoney += order.total_price;
@@ -109,6 +110,7 @@ const HistoryPage = () => {
                           <th>Total Price</th>
                           <th>Payment</th>
                           <th>Shipping Address</th>
+                          <th>Status</th>
                         </tr>
                         {listOrder.map((order, index) => {
                           if (order.payment === 1) {
@@ -120,12 +122,22 @@ const HistoryPage = () => {
                           if (order.payment === 3) {
                             status = "Momo";
                           }
+                          if (order.status === -1) {
+                            orderstatus = "Cancel";
+                          }
+                          if (order.status === 0) {
+                            orderstatus = "Pending";
+                          }
+                          if (order.status === 1) {
+                            orderstatus = "Succesful";
+                          }
                           return (
                             <tr key={index}>
                               <th>{order.id}</th>
                               <th>{order.total_price}</th>
                               <th>{status}</th>
                               <th>{order.shipping_address}</th>
+                              <th>{orderstatus}</th>
                             </tr>
                           );
                         })}
@@ -223,12 +235,11 @@ const HistoryPage = () => {
                                 return (
                                   <tr>
                                     <th>
-                                      <img
-                                        src={item.image_link}
-                                        alt="product-img"
-                                        width="100"
-                                        height="100"
-                                      ></img>
+                                    <img
+                    src={`${process.env.REACT_APP_BASE_URL}/${item.image_link}`}
+                    alt="product-img"
+                    className="img-his"
+                  />
                                     </th>
                                     <th>{item.name}</th>
                                   </tr>

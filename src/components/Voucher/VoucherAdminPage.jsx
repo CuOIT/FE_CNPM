@@ -3,160 +3,88 @@ import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
 import toast, { Toaster } from "react-hot-toast";
 
-const ProductAdminPage = () => {
-  const getAllItems = () => {
-    fetchInstant("/api/get-all-items", METHOD.GET).then((res) => {
-      setItemList(res.items);
+const VoucherAdminPage = () => {
+  const getAllVouchers = () => {
+    fetchInstant("/api/get-all-vouchers", METHOD.GET).then((res) => {
+      setVoucherList(res.vouchers);
     });
   };
-  const [itemList, setItemList] = useState([]);
+  const [voucherList, setVoucherList] = useState([]);
   const enotify = (props) => toast.error(props);
   const notify = (props) => toast.success(props);
-  const [handleDelete, setHandleDelete] = useState({ status: 0 });
-  const [formCreate, setFormCreate] = useState({
-    name: "",
-    amount: "",
-    price: "",
-    description: "",
+  const [newVoucher, setNewVoucher] = useState({
+    expired_date: "",
+    amount: 0,
+    value: 0,
+    voucher_code: "",
   });
-  const [file, setFile] = useState();
-  const [validateFile, setValidateFile] = useState(false);
-  const [itemUpdate, setItemUpdate] = useState({
-    name: "",
-    amount: "",
-    price: "",
-    description: "",
+  const [voucherUpdate, setVoucherUpdate] = useState({
+    expired_date: "",
+    amount: 0,
+    value: 0,
+    voucher_code: "",
   });
-  const [itemIdUpdate, setItemIdUpdate] = useState({ id: null });
+  const [voucherIdUpdate, setVoucherIdUpdate] = useState({ id: null });
 
   useEffect(() => {
-    getAllItems();
+    getAllVouchers();
   }, []);
 
-  // useEffect(() => {}, [
-  //   JSON.parse(localStorage.getItem("allBook")),
-  //   handleDelete.status,
-  // ]) Ham nay k dung vi trong khong
-
-  const deleteItem = (id) => {
+  const deleteVoucher = (id) => {
     const payload = {
       id,
     };
-    fetchInstant("/api/delete-item", METHOD.DELETE, payload).then((res) => {
+    fetchInstant("/api/delete-voucher", METHOD.DELETE, payload).then((res) => {
       if (res.msg.code === 0) {
-        getAllItems();
-        setHandleDelete({ status: 1 });
+        getAllVouchers();
       }
     });
   };
-  const handleCreateItem = (e) => {
+  const handleCreateVoucher = (e) => {
     e.preventDefault();
-    if (validateFile === true) {
-      let formData = new FormData();
-      formData.append("file", file);
-      console.log(formCreate);
-      fetchInstant("/api/create-new-item", METHOD.POST, formCreate).then(
-        (res) => {
-          if (res.code === 0) {
-            //process.env.REACT_APP_BASE_URL
-            fetch(`http://localhost:8080/api/upload-item?id=${res.data.id}`, {
-              method: "PUT",
-              body: formData,
-            }).then((response) => {
-              if (response.status === 201) {
-                notify(res.message);
-                fetchInstant("/api/get-all-items", METHOD.GET).then((data) => {
-                  setItemList(data.items);
-                });
-              }
-            });
-          } else enotify(res.message);
-        }
-      );
-    }
+    const payload = newVoucher;
+    console.log(payload);
+    fetchInstant("/api/create-new-voucher", METHOD.POST, payload).then(
+      (res) => {
+        if (res.code === 0) {
+          //process.env.REACT_APP_BASE_URL
+          notify(res.message);
+          getAllVouchers();
+        } else enotify(res.message);
+      }
+    );
   };
-  const handleUpdateItem = (e) => {
-    console.log(itemUpdate);
+  const handleUpdateVoucher = (e) => {
+    console.log(voucherUpdate);
     e.preventDefault();
-    if (validateFile === true) {
-      let formData = new FormData();
-      formData.append("file", file);
-      const formUpdate = { ...itemUpdate, id: itemIdUpdate.id };
-      console.log("HI");
-      console.log(formUpdate);
-      fetchInstant("/api/edit-item-info-by-id", METHOD.PUT, formUpdate).then(
-        (res) => {
-          if (res.message.code === 0) {
-            if (file == null) {
-              //process.env.REACT_APP_BASE_URL = http://localhost:8080
-              fetch(
-                `http://localhost:8080/api/upload-item?id=${itemIdUpdate.id}`,
-                {
-                  method: "PUT",
-                  body: formData,
-                }
-              ).then((response) => {
-                if (response.status === 201) {
-                  notify(res.message.message);
-                  fetchInstant("/api/get-all-items", METHOD.GET).then(
-                    (data) => {
-                      // localStorage.setItem(
-                      //   "allBook",
-                      //   JSON.stringify(data.items)
-                      // );
-                      setItemList(data.items);
-                    }
-                  );
-                }
-              });
-            } else {
-              notify(res.message.message);
-              fetchInstant("/api/get-all-items", METHOD.GET).then((data) => {
-                setItemList(data.items);
-              });
-            }
-          } else enotify(res.message.message);
+    const payload = { id: voucherIdUpdate.id, ...voucherUpdate };
+    fetchInstant("/api/edit-voucher-info-by-id", METHOD.PUT, payload).then(
+      (res) => {
+        console.log(payload);
+        if (res.message.code === 0) {
+          notify(res.message.message);
+          getAllVouchers();
+        } else {
+          notify(res.message.message);
         }
-      );
-    }
+      }
+    );
   };
   const handleOnChangeCreate = (event) => {
     let { name, value } = event.target;
-    let changeValues = { ...formCreate, [name]: value };
-    setFormCreate({
-      ...formCreate,
-      name: changeValues.name,
-      amount: changeValues.amount,
-      description: changeValues.description,
-      price: changeValues.price,
+    setNewVoucher({
+      ...newVoucher,
+      [name]: value,
     });
   };
 
   const handleOnChangeUpdate = (event) => {
+    console.log(voucherUpdate);
     let { name, value } = event.target;
-    let changeValues = { ...itemUpdate, [name]: value };
-    setItemUpdate({
-      ...itemUpdate,
-      name: changeValues.name,
-      amount: changeValues.amount,
-      description: changeValues.description,
-      price: changeValues.price,
+    setVoucherUpdate({
+      ...voucherUpdate,
+      [name]: value,
     });
-  };
-  const onChangeFile = (e) => {
-    setFile(e.target.files[0]);
-    setTimeout(() => {
-      const extension = [".png", "jpeg"];
-      const extensionOriginFile = e.target.files[0].name.slice(-4);
-      const checkExtension = extension.includes(extensionOriginFile);
-      if (checkExtension) {
-        setValidateFile(true);
-        console.log("true");
-      } else {
-        setValidateFile(false);
-        console.log("false");
-      }
-    }, 50);
   };
 
   return (
@@ -193,40 +121,38 @@ const ProductAdminPage = () => {
               #
             </th>
             <th style={{ width: "30%" }} scope="col">
-              Name
+              Voucher_code
             </th>
             <th style={{ width: "12%" }} scope="col">
-              Price
+              Value
             </th>
             <th style={{ width: "12%" }} scope="col">
               Amount
             </th>
             <th style={{ width: "20%" }} scope="col">
-              Created At
+              Expired_At
             </th>
-            <th style={{ width: "20%" }} scope="col">
-              Manager
-            </th>
+            <th style={{ width: "20%" }} scope="col"></th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          {itemList.map((item, index) => {
-            const date = new Date(item.createdAt);
+          {voucherList.map((item, index) => {
+            const date = new Date(item.expired_date);
             return (
               <tr style={{ height: "55px" }} key={index}>
                 <th style={{ width: "6%" }} scope="row">
                   {item.id}
                 </th>
-                <td style={{ width: "30%" }}>{item.name}</td>
-                <td style={{ width: "12%" }}>{item.price}</td>
+                <td style={{ width: "30%" }}>{item.voucher_code}</td>
+                <td style={{ width: "12%" }}>{item.value}</td>
                 <td style={{ width: "12%" }}>{item.amount}</td>
-                <td style={{ width: "20%" }}>{`${date.getDate()} - ${date.getMonth() + 1} - ${
-                            date.getYear() + 1900
-                          }`}</td>
+                <td style={{ width: "20%" }}>{`${date.getDate()} - ${
+                  date.getMonth() + 1
+                } - ${date.getYear() + 1900}`}</td>
                 <td style={{ width: "20%" }}>
                   <button
                     onClick={() => {
-                      deleteItem(item.id);
+                      deleteVoucher(item.id);
                     }}
                     class="btn btn-danger"
                     style={{
@@ -242,13 +168,13 @@ const ProductAdminPage = () => {
                     data-toggle="modal"
                     data-target="#modalUpdate"
                     onClick={() => {
-                      setItemUpdate({
-                        name: item.name,
+                      setVoucherUpdate({
+                        voucher_code: item.voucher_code,
+                        value: item.value,
                         amount: item.amount,
-                        price: item.price,
-                        description: item.description,
+                        expired_date: item.expired_date,
                       });
-                      setItemIdUpdate({ id: item.id });
+                      setVoucherIdUpdate({ id: item.id });
                     }}
                     style={{
                       margin: "0px 10px",
@@ -285,23 +211,37 @@ const ProductAdminPage = () => {
               ></button>
             </div>
             <div class="modal-body">
-              <form onSubmit={(e) => handleCreateItem(e)}>
+              <form onSubmit={(e) => handleCreateVoucher(e)}>
                 <div class="form-group">
-                  <label for="1">Name</label>
+                  <label for="1">Voucher Code</label>
                   <input
-                    name="name"
+                    name="voucher_code"
                     onChange={(event) => {
                       handleOnChangeCreate(event);
                     }}
                     type="text"
                     class="form-control"
                     id="1"
-                    placeholder="Name"
+                    placeholder="Voucher Code"
                     style={{ width: "70%" }}
                   />
                 </div>
                 <div class="form-group">
-                  <label for="2">Amount</label>
+                  <label for="2">Value</label>
+                  <input
+                    onChange={(event) => {
+                      handleOnChangeCreate(event);
+                    }}
+                    name="value"
+                    type="number"
+                    class="form-control"
+                    id="2"
+                    placeholder="Value"
+                    style={{ width: "70%" }}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="3">Amount</label>
                   <input
                     onChange={(event) => {
                       handleOnChangeCreate(event);
@@ -309,43 +249,24 @@ const ProductAdminPage = () => {
                     name="amount"
                     type="number"
                     class="form-control"
-                    id="2"
+                    id="3"
                     placeholder="Amount"
                     style={{ width: "70%" }}
                   />
                 </div>
                 <div class="form-group">
-                  <label for="3">Price</label>
+                  <label for="4">Expired Date</label>
                   <input
                     onChange={(event) => {
                       handleOnChangeCreate(event);
                     }}
-                    name="price"
-                    type="number"
-                    class="form-control"
-                    id="3"
-                    placeholder="Price"
-                    style={{ width: "70%" }}
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea
-                    onChange={(event) => {
-                      handleOnChangeCreate(event);
-                    }}
-                    name="description"
+                    type="date"
+                    name="expired_date"
                     style={{ width: "80%" }}
                     class="form-control"
-                    id="exampleFormControlTextarea1"
+                    id="4"
                     rows="3"
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="image">Chọn ảnh cho sản phẩm</label>
-                  <form enctype="multipart/form-data">
-                    <input onChange={onChangeFile} type="file" name="file" />
-                  </form>
+                  ></input>
                 </div>
                 <button
                   type="submit"
@@ -380,7 +301,7 @@ const ProductAdminPage = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Update product
+                Update Voucher
               </h1>
               <button
                 type="button"
@@ -390,71 +311,66 @@ const ProductAdminPage = () => {
               ></button>
             </div>
             <div class="modal-body">
-              <form onSubmit={(e) => handleUpdateItem(e)}>
+              <form onSubmit={(e) => handleUpdateVoucher(e)}>
                 <div class="form-group">
-                  <label for="1">Name</label>
+                  <label for="1">Voucher Code</label>
                   <input
-                    defaultValue={itemUpdate.name}
-                    name="name"
+                    defaultValue={voucherUpdate.voucher_code}
+                    name="voucher_code"
                     onChange={(event) => {
                       handleOnChangeUpdate(event);
                     }}
                     type="text"
                     class="form-control"
                     id="1"
-                    placeholder="Name"
+                    placeholder="Voucher Code"
                     style={{ width: "70%" }}
                   />
                 </div>
                 <div class="form-group">
-                  <label for="2">Amount</label>
+                  <label for="2">Value</label>
                   <input
-                    defaultValue={itemUpdate.amount}
+                    defaultValue={voucherUpdate.value}
+                    onChange={(event) => {
+                      handleOnChangeUpdate(event);
+                    }}
+                    name="value"
+                    type="number"
+                    class="form-control"
+                    id="2"
+                    placeholder="Value"
+                    style={{ width: "70%" }}
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="3">Amount</label>
+                  <input
+                    defaultValue={voucherUpdate.amount}
                     onChange={(event) => {
                       handleOnChangeUpdate(event);
                     }}
                     name="amount"
                     type="number"
                     class="form-control"
-                    id="2"
+                    id="3"
                     placeholder="Amount"
                     style={{ width: "70%" }}
                   />
                 </div>
                 <div class="form-group">
-                  <label for="3">Price</label>
+                  <label for="exampleFormControlTextarea1">Expired Date</label>
                   <input
-                    defaultValue={itemUpdate.price}
+                    defaultValue={voucherUpdate.expired_date}
                     onChange={(event) => {
                       handleOnChangeUpdate(event);
                     }}
-                    name="price"
-                    type="number"
-                    class="form-control"
-                    id="3"
-                    placeholder="Price"
-                    style={{ width: "70%" }}
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea
-                    defaultValue={itemUpdate.description}
-                    onChange={(event) => {
-                      handleOnChangeUpdate(event);
-                    }}
-                    name="description"
+                    type="date"
+                    defaultValue={voucherUpdate.expired_date}
+                    name="expired_date"
                     style={{ width: "80%" }}
                     class="form-control"
                     id="exampleFormControlTextarea1"
-                    rows="3"
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="image">Chọn ảnh cho sản phẩm</label>
-                  <form enctype="multipart/form-data">
-                    <input onChange={onChangeFile} type="file" name="file" />
-                  </form>
+                  ></input>
                 </div>
                 <button
                   type="submit"
@@ -483,4 +399,4 @@ const ProductAdminPage = () => {
     </div>
   );
 };
-export default ProductAdminPage;
+export default VoucherAdminPage;
