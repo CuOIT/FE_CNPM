@@ -23,7 +23,7 @@ const UserListPage = () => {
       fetchInstant("/api/delete-user", METHOD.DELETE, payload).then((res) => {
         if (res.msg.code === 0) {
           fetchInstant("/api/get-all-users", METHOD.GET).then((res) => {
-            localStorage.setUser("allUser", JSON.stringify(res.items));
+            localStorage.setUser("allUser", JSON.stringify(res.users));
             setHandleDelete({ status: 1 });
           });
         }
@@ -37,7 +37,7 @@ const UserListPage = () => {
           return (
             <tr style={{ height: "55px" }}>
               <th style={{ width: "6%" }} scope="row">
-                {item.id}
+                {user.id}
               </th>
               <td style={{ width: "30%" }}>{user.user_name}</td>
               <td style={{ width: "12%" }}>{user.email}</td>
