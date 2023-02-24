@@ -6,9 +6,7 @@ import { fetchInstant } from "../../config";
 import { METHOD } from "../../constants";
 
 const AdminDataPage = () => {
-
-    const dataUserRedux = useDataAuthRedux();
-    // console.log(dataUserRedux)
+    const dataUserRedux = useDataAuthRedux()
 
     const [listVoucher, setListVoucher] = useState([]);
     const [listItem, setListItem] = useState([]);

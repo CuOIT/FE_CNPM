@@ -171,18 +171,7 @@ const CartPage = () => {
                 </div>
               </div>
 
-              <div className="payMethods card-body p-4 d-flex flex-row">
-                <div className="container">
-                  <div class="form-group">
-                    <label for="payment-method">Payment Method:</label>
-                    <select class="form-control" id="payment-method">
-                      <option value="1">Cash</option>
-                      <option value="2">Banking</option>
-                      <option value="3">Momo</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+              
 
               <div className="card-body p-4 d-flex flex-row">
                 <div className="form-outline flex-fill">
