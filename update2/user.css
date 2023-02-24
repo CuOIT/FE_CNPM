@@ -48,3 +48,7 @@ table{
 #delete:hover{
     background-color:rgb(232, 141, 141);
 }
+
+#head{
+    background-color: #d3d3d3;
+}
