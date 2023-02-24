@@ -13,6 +13,7 @@ const notify = (props) => toast.success(props);
 
 const ProfilePage = () => {
   const dataUserRedux = useDataAuthRedux();
+  console.log(dataUserRedux);
   const dispatch = useDispatch();
   const day = new Date(dataUserRedux.birthday).getDate();
   const month = new Date(dataUserRedux.birthday).getMonth();
@@ -40,10 +41,9 @@ const ProfilePage = () => {
     setUserUpdate({ ...userUpdate, gender: e.target.value });
   };
 
-  const ranked = (props) => {
-    const ranking = dataUserRedux.rank;
-    if (ranking === null) {
-      console.log("iron");
+  const ranked = (ranking) => {
+    console.log(ranking);
+    if (ranking === undefined) {
       return (
         <img
           class="imgrank"
